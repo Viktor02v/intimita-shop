@@ -1,0 +1,7 @@
+export const APP_WRITE_ID = ''
+export const DB_ID = ''
+export const COLLECTION_ITEMS = ''
+export const COLLECTION_FAVORITES = ''
+export const COLLECTION_CART = ''
+export const COLLECTION_ORDERS = ''
+export const STORAGE_ID = ''
