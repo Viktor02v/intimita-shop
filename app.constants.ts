@@ -1,7 +1,7 @@
-export const APP_WRITE_ID = ''
-export const DB_ID = ''
-export const COLLECTION_ITEMS = ''
-export const COLLECTION_FAVORITES = ''
-export const COLLECTION_CART = ''
-export const COLLECTION_ORDERS = ''
-export const STORAGE_ID = ''
+export const APP_WRITE_ID = "intimita-shop";
+export const DB_ID = "intimita-base";
+export const COLLECTION_ITEMS = "items";
+export const COLLECTION_FAVORITES = "favorites";
+export const COLLECTION_CART = "cart";
+export const COLLECTION_ORDERS = "orders";
+export const STORAGE_ID = "storage";
