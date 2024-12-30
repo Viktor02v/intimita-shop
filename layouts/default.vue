@@ -5,7 +5,7 @@
 <template>
 	<section class="relative w-full h-[100vh]">
 		<LayoutHeader/>
-		<div class="w-full mt-[80px]">
+		<div class="w-full mt-[120px]">
 			<slot />
 		</div>
 	</section>

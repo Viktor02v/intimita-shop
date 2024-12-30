@@ -9,7 +9,7 @@ export const MENU_DATA:MenuData[] = [
 		url:'/candels',
 	},
 	{
-		name:'About us',
+		name:'About',
 
 		url:'/about',
 	},
@@ -24,7 +24,7 @@ export const MENU_DATA:MenuData[] = [
 	},
 	{
 
-		name:'Other',
-		url:'/other'
+		name:'More',
+		url:'/more'
 	},
 ]
