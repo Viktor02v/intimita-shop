@@ -35,5 +35,8 @@
   },
   "overrides": {
     "vue": "latest"
+  },
+  "devDependencies": {
+    "@iconify-json/radix-icons": "^1.2.2"
   }
 }
