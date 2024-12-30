@@ -9,7 +9,6 @@
     </div>
     <LayoutFooter />
 
-
   </section>
 </template>
 <style scoped></style>
