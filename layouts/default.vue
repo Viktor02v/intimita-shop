@@ -7,6 +7,8 @@
       <slot />
     </div>
     <LayoutFooter />
+
+	
   </section>
 </template>
 
