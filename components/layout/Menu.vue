@@ -5,14 +5,16 @@ const menuStore = useMenuStore()
 </script>
 
 <template>
-	<div>
-		<NuxtLink :to="item.url" v-for="item in MENU_DATA " :key="item.name"
-			class="">
-			<span>{{ item.name }}</span>
+	<div class=" flex items-center text-xl gap-[67px] font-normal ">
+		<NuxtLink :to="item.url" v-for="item in MENU_DATA " :key="item.name" class="text-white text-center w-full ">
+			<div :class="[item.name === 'Intimita Shop' ? 'font-garamond text-[32px] font-light' : '',,['Shop', 'More'].includes(item.name) ? 'hover:text-[#FFD095] gap-[7px]' : '','flex items-center']">
+				<span
+					>{{
+						item.name }}</span>
+				<Icon v-if="['Shop', 'More'].includes(item.name)"  name="iconamoon:arrow-up-2-light" size="18" />
+			</div>
 		</NuxtLink>
 	</div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
