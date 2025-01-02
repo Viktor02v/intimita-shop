@@ -1,30 +1,26 @@
 export interface MenuData {
-	name:string,
-	url:string,
+  name: string;
+  url?: string;
 }
 
-export const MENU_DATA:MenuData[] = [
-	{
-		name:'Shop',
-		url:'/candels',
-	},
-	{
-		name:'About',
+export const MENU_DATA: MenuData[] = [
+  {
+    name: "Catalog",
+  },
+  {
+    name: "About",
 
-		url:'/about',
-	},
-	{
-		name:'Intimita Shop',
-		url:'/',
-	},
-	{
-
-		name:'Blog',
-		url:'/blogs'
-	},
-	{
-
-		name:'More',
-		url:'/more'
-	},
-]
+    url: "/about",
+  },
+  {
+    name: "Intimita Shop",
+    url: "/",
+  },
+  {
+    name: "Blog",
+    url: "/blogs",
+  },
+  {
+    name: "More",
+  },
+];
