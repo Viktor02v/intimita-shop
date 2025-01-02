@@ -21,7 +21,7 @@ const { data } = useGetItemse();
     <div
       v-for="item in SIDEBAR_TITLES"
       :key="item.name"
-      class="fixed top-[120px] left-0 h-[60vh] w-[34vw] bg-white py-4 z-50"
+      class="fixed top-[120px] left-0 h-[57.7vh] w-[34vw] bg-white py-4 z-50"
       :class="
         sidebarStore.isSidebarOpenCatalog
           ? 'translate-x-0 duration-1000 opacity-100'
@@ -54,10 +54,11 @@ const { data } = useGetItemse();
         :title="SIDEBAR_TITLES[3]"
       />
     </div>
+
     <div
       v-for="item in SIDEBAR_TITLES"
       :key="item.name"
-      class="fixed top-[120px] left-0 h-[65vh] w-[34vw] bg-white py-6 flex flex-col justify-start items-start z-50"
+      class="fixed top-[120px] left-0 h-[57.7vh] w-[34vw] bg-white py-6 flex flex-col justify-start items-start z-50"
       :class="
         sidebarStore.isSidebarOpenMore
           ? 'translate-x-0 duration-1000 opacity-100'
