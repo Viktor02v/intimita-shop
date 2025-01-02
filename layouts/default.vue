@@ -3,9 +3,9 @@
 <template>
 
 
-	<section class="relative w-full h-[100vh]">
+	<section class="relative w-[100vw] h-[100vh]">
 		<LayoutHeader />
-		<div class="w-full mt-[80px]">
+		<div class="w-[100vw] mt-[120px]">
 			<slot />
 		</div>
 		<LayoutFooter />

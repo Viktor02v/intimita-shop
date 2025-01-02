@@ -28,7 +28,6 @@ export const FOOTER_CATALOG_DATA: FooterData[] = [
   },
   {
     name: "diffusers",
-
     url: "/diffusers",
   },
   {
