@@ -15,7 +15,7 @@ import { ARROW_DATA } from "../arrow/arrow.data";
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
-          :video_url="item.video_url"
+          :video_url="item.foto_url"
           :url="item.url"
         />
       </div>
@@ -24,7 +24,7 @@ import { ARROW_DATA } from "../arrow/arrow.data";
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
-          :video_url="item.video_url"
+          :video_url="item.foto_url"
           :url="item.url"
         />
       </div>
@@ -33,7 +33,7 @@ import { ARROW_DATA } from "../arrow/arrow.data";
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
-          :video_url="item.video_url"
+          :video_url="item.foto_url"
           :url="item.url"
         />
       </div>
@@ -42,7 +42,7 @@ import { ARROW_DATA } from "../arrow/arrow.data";
           :title="item.title"
           :subtitle="item.subtitle"
           :icon="item.icon"
-          :video_url="item.video_url"
+          :video_url="item.foto_url"
           :url="item.url"
         />
       </div>
