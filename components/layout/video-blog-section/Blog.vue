@@ -1,8 +1,8 @@
 <template>
   <div class="py-[43px]">
-    <h1 class="py-[21px] px-[9%] text-[36px] font-bold">
-      {{ title }}
-    </h1>
+	<div class="pl-[120px]">
+	<TItleItem :title="title"/>
+</div>
     <LayoutVideoBlogSectionCollageSection />
 
     <div class="w-full flex justify-center py-[31px]">

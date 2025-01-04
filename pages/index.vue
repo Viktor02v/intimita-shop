@@ -2,6 +2,7 @@
 import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale"
 import { TITLES_COLLAGE_DATA } from "../components/layout/video-blog-section/collage.data";
 import { TITLES_BLOG_DATA } from "../components/layout/video-blog-section/blog.data";
+import TItleItem from "~/components/TItleItem.vue";
 const { data: items } = useGetItemsOnSale()
 </script>
 
@@ -12,7 +13,7 @@ const { data: items } = useGetItemsOnSale()
 
 		<!-- Often buy list -->
 		<div class="my-[70px] w-full px-[135px]">
-			<h1 class="text-4xl font-bold pl-[42px] mb-[45px]">People often buy</h1>
+			<TItleItem title="People often buy"/>
 			<LayoutList :items="items?.slice(4, 8)" />
 		</div>
     

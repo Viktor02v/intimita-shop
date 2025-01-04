@@ -9,7 +9,7 @@ import {
 </script>
 <template>
   <div class="max-w-[83vw] mx-auto my-[87px]">
-    <h1 class="text-[36px] font-bold">{{ ACCORDION_TITLES[0].title }}</h1>
+    <TItleItem :title="ACCORDION_TITLES[0].title"/>
     <UiAccordion type="single" class="w-full mt-[45px]" collapsible>
       <UiAccordionItem
         v-for="item in ACCORDION_ONE_DATA"
