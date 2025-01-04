@@ -42,10 +42,10 @@ const onBrightness = () => {
   >
     <NuxtLink :to="url" class="w-full h-full">
       <div
-        class="flex flex-col justify-start items-start gap-2 text-white absolute top-[45%] left-[14%] z-10"
+        class="flex flex-col justify-start items-start gap-2 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4  z-10"
       >
         <div
-          class="font-garamond text-[24px] font-bold hover:text-[#FFD095] transition-all duration-500"
+          class="font-garamond text-center text-[24px] font-bold hover:text-[#FFD095] transition-all duration-500"
         >
           {{ props.title }}
         </div>

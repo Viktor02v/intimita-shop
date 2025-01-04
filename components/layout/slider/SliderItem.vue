@@ -1,10 +1,12 @@
 <script setup lang="ts">
-defineProps({
+import {ARROW_DATA} from "@/components/layout/arrow/arrow.data"
+const props = defineProps({
   fotoUrl: String,
   title: String,
   url: String,
 });
 const isHoverText = ref(false);
+
 </script>
 
 <template>
@@ -23,22 +25,7 @@ const isHoverText = ref(false);
         >
           {{ title }}
         </h1>
-        <div
-          class="flex gap-2 hover:text-[#ffcf95aa] transition-all duration-500 items-center font-light text-base mt-2"
-          @mouseover="isHoverText = true"
-          @mouseleave="isHoverText = false"
-        >
-          <p>view more</p>
-          <Icon
-            name="prime:arrow-up-right"
-            class="text-base"
-            :class="
-              isHoverText
-                ? 'text-[#FFD095] backflip transition-all duration-700'
-                : 'transition-all duration-700'
-            "
-          />
-        </div>
+		  <LayoutArrowOnChange :title="ARROW_DATA[1].title" :icon="ARROW_DATA[1].icon" :link="props.url" :size="ARROW_DATA[1].size" />
       </div>
     </NuxtLink>
   </div>
