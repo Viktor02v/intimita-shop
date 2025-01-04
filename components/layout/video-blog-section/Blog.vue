@@ -3,7 +3,7 @@
     <h1 class="py-[21px] px-[9%] text-[36px] font-bold">
       {{ title }}
     </h1>
-    <LayoutVideoBlogSectionCollageSection />
+    <LayoutVideoBlogSection />
 
     <div class="w-full flex justify-center py-[31px]">
       <LayoutArrowOnChange
