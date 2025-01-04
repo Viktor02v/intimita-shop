@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGetItemse } from "@/composables/useGetItems";
+import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale";
 import { useSidebarStore } from "@/store/sidebar.store";
 
 import {
@@ -13,7 +13,6 @@ import {
 
 const sidebarStore = useSidebarStore();
 
-const { data } = useGetItemse();
 </script>
 
 <template>
