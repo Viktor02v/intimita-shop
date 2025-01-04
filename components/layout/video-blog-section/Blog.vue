@@ -1,9 +1,11 @@
 <template>
   <div class="py-[43px]">
+
 	<div class="pl-[120px]">
 	<TItleItem :title="title"/>
 </div>
-    <LayoutVideoBlogSectionCollageSection />
+
+    <LayoutVideoBlogSection />
 
     <div class="w-full flex justify-center py-[31px]">
       <LayoutArrowOnChange
