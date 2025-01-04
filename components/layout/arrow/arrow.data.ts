@@ -12,4 +12,11 @@ export const ARROW_DATA: ARROW_DATA[] = [
     link: "/",
     size: "text-[14px]",
   },
+
+  {
+	title: "view more",
+	icon: "radix-icons:arrow-right",
+	link: "/",
+	size: "text-[14px]",
+ },
 ];
