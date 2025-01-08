@@ -2,9 +2,6 @@
 import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale";
 import { useSidebarStore } from "@/store/sidebar.store";
 
-
-
-
 import {
 	SIDEBAR_TITLES,
 	SIDEBAR_CANDLES_DATA,
@@ -15,11 +12,10 @@ import {
 } from "@/components/layout/sidebar/sidebar.data";
 
 const sidebarStore = useSidebarStore();
-
 </script>
 
 <template>
-	<div >
+	<div>
 		<div v-for="item in SIDEBAR_TITLES" :key="item.name"
 			class="fixed top-[120px] left-0 h-[519.5px] w-[34vw] bg-white py-4 z-50" :class="sidebarStore.isSidebarOpenCatalog
 				? 'translate-x-0 duration-1000 opacity-100'
@@ -33,18 +29,25 @@ const sidebarStore = useSidebarStore();
 					ENG
 				</button>
 			</div>
-			<LayoutSidebarCatalog :items="SIDEBAR_CANDLES_DATA" :title="SIDEBAR_TITLES[0]" />
+			<div>
+				<LayoutSidebarCatalog :items="SIDEBAR_CANDLES_DATA" :title="SIDEBAR_TITLES[0]"
+					:url="SIDEBAR_TITLES[0].url" />
 
-			<LayoutSidebarCatalog :items="SIDEBAR_DIFFUSERS_DATA" :title="SIDEBAR_TITLES[1]" />
-			<LayoutSidebarCatalog :items="SIDEBAR_SELF_CARE_DATA" :title="SIDEBAR_TITLES[2]" />
-			<LayoutSidebarCatalog :items="SIDEBAR_GIFTS_DATA" :title="SIDEBAR_TITLES[3]" />
+				<LayoutSidebarCatalog :items="SIDEBAR_DIFFUSERS_DATA" :title="SIDEBAR_TITLES[1]"
+					:url="SIDEBAR_TITLES[1].url" />
+				<LayoutSidebarCatalog :items="SIDEBAR_SELF_CARE_DATA" :title="SIDEBAR_TITLES[2]"
+					:url="SIDEBAR_TITLES[2].url" />
+				<LayoutSidebarCatalog :items="SIDEBAR_GIFTS_DATA" :title="SIDEBAR_TITLES[3]" :url="SIDEBAR_TITLES[3].url" />
+			</div>
+
+
 		</div>
 
 		<div v-for="item in SIDEBAR_TITLES" :key="item.name"
 			class="fixed top-[120px] left-0 h-[519.5px] w-[34vw] bg-white py-6 flex flex-col justify-start items-start z-50"
 			:class="sidebarStore.isSidebarOpenMore
-				? 'translate-x-0 duration-1000 opacity-100'
-				: '-translate-x-full duration-1000 opacity-100'
+					? 'translate-x-0 duration-1000 opacity-100'
+					: '-translate-x-full duration-1000 opacity-100'
 				">
 			<LayoutSidebarCatalog :items="SIDEBAR_PROMOTIONS_AND_DISCOUNTS_DATA" :title="SIDEBAR_TITLES[4]" />
 			<div class="py-8"></div>
@@ -53,16 +56,16 @@ const sidebarStore = useSidebarStore();
 				<LayoutSidebarCatalog :title="SIDEBAR_TITLES[6]" />
 				<LayoutSidebarCatalog :title="SIDEBAR_TITLES[7]" />
 			</div>
+			</div>
+
+
+
+
+			<!-- Cart -->
+			<LayoutCart />
+			<!-- Favorites -->
+			<LayoutFavorites />
 		</div>
-
-
-		<!-- Cart -->
-		<LayoutCart />
-		<!-- Favorites -->
-		<LayoutFavorites />
-	</div>
-
-
 
 </template>
 
