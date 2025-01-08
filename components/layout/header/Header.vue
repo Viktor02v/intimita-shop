@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { useGetCartProducts } from "@/composables/useGetCartProducts";
+import { useGetFavoriteProducts } from "@/composables/useGetFavoriteProducts";
+import {toggleSidebar} from "@/composables/useToggleSidebar"
 import { useSidebarStore } from "@/store/sidebar.store";
 import { useGetRandomListCandles } from "~/composables/useGetRandomList";
 import { useSearchStore } from "~/store/search.store";
+
 const onSearchStore = useSearchStore();
 const sidebarStore = useSidebarStore();
+const { data: cartProducts = [] } = useGetCartProducts();
+const { data: favoriteProducts = [] } = useGetFavoriteProducts();
+
 const {
   data: randomList,
   isPending: isPendingRandom,
@@ -40,18 +47,31 @@ const {
         <LayoutHeaderMenu />
       </div>
       <div class="px-[5vw]"></div>
-      <div
-        class="flex items-center gap-[30px] text-[26px] transition-all duration-200 ease-out text-[#989898]"
-      >
-        <Icon name="fluent:person-32-light" class="hover:text-[#FFD095]" />
-        <Icon name="mdi-light:heart" class="hover:text-[#FFD095]" />
-        <Icon
-          name="hugeicons:shopping-basket-01"
-          class="hover:text-[#FFD095]"
-        />
-      </div>
+     <div class="flex items-center gap-[30px] text-[26px] transition-all duration-200 ease-out text-[#989898]">
+				<Icon name="fluent:person-32-light" class="hover:text-[#FFD095] cursor-pointer" />
+				
+				<div class="relative flex items-cetner">
+					<Icon @click="toggleSidebar('favorites')" name="mdi-light:heart"
+						:class="[sidebarStore.isFavoritesOpen ? 'text-[#FFD095]' : '', 'hover:text-[#FFD095] text-[30px] cursor-pointer']" />
+					<span
+						:class="[sidebarStore.isFavoritesOpen ? 'text-[#FFD095]' : '', ' cursor-pointer pointer-events-none', 'absolute flex items-center   top-1/4 left-1/2 text-[10px] -translate-y-3/6 -translate-x-1/2']">
+						{{ favoriteProducts?.length }}
+					</span>
+				</div>
+
+				<div class="relative flex items-cetner  ">
+					<Icon @click="toggleSidebar('cart')" name="hugeicons:shopping-basket-01"
+						:class="[sidebarStore.isCartOpen ? 'text-[#FFD095]' : '', 'hover:text-[#FFD095] cursor-pointer']" />
+					<span
+						:class="[sidebarStore.isCartOpen ? 'text-[#FFD095]' : '', ' cursor-pointer pointer-events-none', 'absolute flex items-center   top-1/3 left-1/2 text-[10px] -translate-y-3/6 -translate-x-1/2']">
+						{{ cartProducts?.length }}
+					</span>
+				</div>
+			</div>
+      
     </div>
   </div>
+
 </template>
 
 <style scoped></style>

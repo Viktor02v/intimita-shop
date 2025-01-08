@@ -3,12 +3,12 @@ import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale";
 import { useSidebarStore } from "@/store/sidebar.store";
 
 import {
-  SIDEBAR_TITLES,
-  SIDEBAR_CANDLES_DATA,
-  SIDEBAR_DIFFUSERS_DATA,
-  SIDEBAR_GIFTS_DATA,
-  SIDEBAR_PROMOTIONS_AND_DISCOUNTS_DATA,
-  SIDEBAR_SELF_CARE_DATA,
+	SIDEBAR_TITLES,
+	SIDEBAR_CANDLES_DATA,
+	SIDEBAR_DIFFUSERS_DATA,
+	SIDEBAR_GIFTS_DATA,
+	SIDEBAR_PROMOTIONS_AND_DISCOUNTS_DATA,
+	SIDEBAR_SELF_CARE_DATA,
 } from "@/components/layout/sidebar/sidebar.data";
 
 const sidebarStore = useSidebarStore();
@@ -57,30 +57,14 @@ const sidebarStore = useSidebarStore();
           :url="SIDEBAR_TITLES[3].url"
         />
       </div>
+      
+      	<!-- Cart -->
+		<LayoutCart />
+		<!-- Favorites -->
+		<LayoutFavorites />
     </div>
 
-    <div
-      v-for="item in SIDEBAR_TITLES"
-      :key="item.name"
-      class="fixed top-[120px] left-0 h-[519.5px] w-[34vw] bg-white py-6 flex flex-col justify-start items-start z-50"
-      :class="
-        sidebarStore.isSidebarOpenMore
-          ? 'translate-x-0 duration-1000 opacity-100'
-          : '-translate-x-full duration-1000 opacity-100'
-      "
-    >
-      <LayoutSidebarCatalog
-        :items="SIDEBAR_PROMOTIONS_AND_DISCOUNTS_DATA"
-        :title="SIDEBAR_TITLES[4]"
-      />
-      <div class="py-8"></div>
-      <div class="w-full flex flex-col justify-start items-start">
-        <LayoutSidebarCatalog :title="SIDEBAR_TITLES[5]" />
-        <LayoutSidebarCatalog :title="SIDEBAR_TITLES[6]" />
-        <LayoutSidebarCatalog :title="SIDEBAR_TITLES[7]" />
-      </div>
-    </div>
-  </div>
+
 </template>
 
 <style scoped></style>
