@@ -12,7 +12,6 @@ import {
 } from "@/components/layout/sidebar/sidebar.data";
 
 const sidebarStore = useSidebarStore();
-
 </script>
 
 <template>
@@ -35,23 +34,29 @@ const sidebarStore = useSidebarStore();
           ENG
         </button>
       </div>
-      <LayoutSidebarCatalog
-        :items="SIDEBAR_CANDLES_DATA"
-        :title="SIDEBAR_TITLES[0]"
-      />
+      <div>
+        <LayoutSidebarCatalog
+          :items="SIDEBAR_CANDLES_DATA"
+          :title="SIDEBAR_TITLES[0]"
+          :url="SIDEBAR_TITLES[0].url"
+        />
 
-      <LayoutSidebarCatalog
-        :items="SIDEBAR_DIFFUSERS_DATA"
-        :title="SIDEBAR_TITLES[1]"
-      />
-      <LayoutSidebarCatalog
-        :items="SIDEBAR_SELF_CARE_DATA"
-        :title="SIDEBAR_TITLES[2]"
-      />
-      <LayoutSidebarCatalog
-        :items="SIDEBAR_GIFTS_DATA"
-        :title="SIDEBAR_TITLES[3]"
-      />
+        <LayoutSidebarCatalog
+          :items="SIDEBAR_DIFFUSERS_DATA"
+          :title="SIDEBAR_TITLES[1]"
+          :url="SIDEBAR_TITLES[1].url"
+        />
+        <LayoutSidebarCatalog
+          :items="SIDEBAR_SELF_CARE_DATA"
+          :title="SIDEBAR_TITLES[2]"
+          :url="SIDEBAR_TITLES[2].url"
+        />
+        <LayoutSidebarCatalog
+          :items="SIDEBAR_GIFTS_DATA"
+          :title="SIDEBAR_TITLES[3]"
+          :url="SIDEBAR_TITLES[3].url"
+        />
+      </div>
     </div>
 
     <div
