@@ -48,7 +48,7 @@ onMounted(() => {
     <!-- Toggle Button -->
     <div class="flex items-center py-8">
       <buttonn
-        class="text-[36px] font-garamond min-w-[10vw]"
+        class="text-[36px] cursor-pointer font-garamond min-w-[10vw]"
         @click="resetFilter"
         >{{ props.filterName }}</buttonn
       >

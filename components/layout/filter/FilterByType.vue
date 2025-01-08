@@ -58,7 +58,7 @@ onMounted(() => {
     <!-- Toggle Button -->
     <div class="flex items-center space-5 py-8">
       <UiButton
-        class="w-[150px] text-[13px] font-comfortaa font-light bg-white shadow-lg rounded-3xl text-black border border-gray-500"
+        class="w-[150px] text-[13px] font-light bg-white shadow-lg rounded-3xl hover:bg-black hover:text-[#FFD095] text-black border border-gray-500"
         @click="onTypeFilter"
         >{{ props.filterName }}</UiButton
       >

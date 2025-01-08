@@ -91,11 +91,11 @@ const closeSearch = () => {
   <section class="w-[90%] flex flex-col justify-end items-end gap-8">
     <!-- Search Input -->
     <div class="flex flex-col items-center space-5 relative">
-      <div class="flex justify-between border rounded-lg max-w-[300px] px-1">
+      <div class="flex justify-between border rounded-lg  min-w-[280px] max-w-[290px] px-1">
         <input
           @input="onSearchQuery"
           v-model="searchQuery"
-          class="bg-transparent outline-none placeholder:text-[12px] p-2 max-w-[200px]"
+          class="bg-transparent border-none outline-none max-h-[35px] placeholder:text-[12px] min-w-[250px] max-w-[250px] p-2 "
           type="text"
           placeholder="Search..."
         />
@@ -107,13 +107,13 @@ const closeSearch = () => {
       <!-- Search Results -->
       <div
         v-if="onSearchStore.isSearchOpen && searchData.length > 0"
-        class="bg-black w-full mt-4 absolute top-10 z-10 max-h-[30vh] overflow-y-auto rounded-lg"
+        class="bg-black w-full mt-4 absolute top-10 z-10 max-h-[30vh] overflow-y-auto scrollbar-none rounded-lg"
       >
         <NuxtLink
           :to="`/products/${item.$id}`"
           v-for="item in searchData"
           :key="item.$id"
-          class="flex gap-4 p-2 border-b border-gray-200 hover:text-[#FFD095] px-4"
+          class="flex gap-4 cursor-pointer p-2 border-b border-gray-200 hover:text-[#FFD095] px-4"
         >
           <img :src="item.foto_url" class="w-8 h-8 object-contain" alt="" />
           {{ item.name }}
