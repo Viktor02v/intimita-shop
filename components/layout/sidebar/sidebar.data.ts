@@ -6,15 +6,15 @@ export interface SidebarData {
 export const SIDEBAR_TITLES: SidebarData[] = [
   {
     name: "Candles",
-    url: "/sidebar-candels",
+    url: "/candles",
   },
   {
     name: "Diffusers",
-    url: "/sidebar-diffusers",
+    url: "/diffusers",
   },
   {
     name: "Self-care",
-    url: "/sidebar-self-care",
+    url: "/self-care",
   },
   {
     name: "Gifts",
@@ -22,19 +22,19 @@ export const SIDEBAR_TITLES: SidebarData[] = [
   },
   {
     name: "Promotions and discounts",
-    url: "/sidebar-promotions-and-discounts",
+    url: "/Promotions-and-discounts",
   },
   {
     name: "Feedbacks",
-    url: "/sidebar-feedbacks",
+    url: "/Feedbacks",
   },
   {
     name: "Contacts",
-    url: "/sidebar-contacts",
+    url: "/Contacts",
   },
   {
     name: "Collaboration",
-    url: "/sidebar-collaboration",
+    url: "/Collaboration",
   },
 ];
 export const SIDEBAR_CANDLES_DATA: SidebarData[] = [
