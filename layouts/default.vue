@@ -8,10 +8,10 @@ const onOpacity = ref(false);
 const calculateOpacity = computed(() => {
   // Add your conditions here
   const isAnyOpen =
-    sidebarStore.isSidebarOpenCatalog || sidebarStore.isSidebarOpenMore;
+    sidebarStore.isSidebarOpenCatalog || sidebarStore.isSidebarOpenMore || sidebarStore.isCartOpen || sidebarStore.isFavoritesOpen ;
 
-  // Return opacity based on the conditions
-  return isAnyOpen ? "opacity-70" : "opacity-100";
+	 
+  return isAnyOpen ? "opacity-50  transition-all duration-500 easy-in-out " : "opacity-100";
 });
 </script>
 

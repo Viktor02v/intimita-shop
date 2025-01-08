@@ -6,7 +6,7 @@ export function useGetProduct(productId:string) {
 return useQuery({
 	queryKey: ["product", productId ],
 	queryFn: async () => {
-		return DB.getDocument(DB_ID, COLLECTION_ITEMS, productId);
+		return await DB.getDocument(DB_ID, COLLECTION_ITEMS, productId);
 	},
 	select: (data) => data,
 });
