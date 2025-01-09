@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { useSidebarStore } from "@/store/sidebar.store";
-import {
-  SIDEBAR_TITLES,
-  SIDEBAR_CANDLES_DATA,
-  SIDEBAR_DIFFUSERS_DATA,
-  SIDEBAR_GIFTS_DATA,
-  SIDEBAR_PROMOTIONS_AND_DISCOUNTS_DATA,
-} from "@/components/layout/sidebar/sidebar.data";
+
 import { defineProps } from "vue";
 
 const props = defineProps({

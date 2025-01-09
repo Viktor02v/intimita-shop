@@ -4,6 +4,13 @@ import { TITLES_COLLAGE_DATA } from "../components/layout/video-blog-section/col
 import { TITLES_BLOG_DATA } from "../components/layout/video-blog-section/blog.data";
 import TItleItem from "~/components/TItleItem.vue";
 const { data: items } = useGetItemsOnSale();
+
+// const checkIsFavorite = (mealId: string) => {
+//   return favoriteMap.value[mealId] || false;
+// };
+// const checkIsCart = (mealId: string) => {
+//   return cartMap.value[mealId] || false;
+// };
 </script>
 
 <template>
