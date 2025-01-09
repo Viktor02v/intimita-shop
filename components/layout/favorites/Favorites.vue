@@ -46,12 +46,15 @@ const favoritesClasses = computed(() =>
 			Error loading Wishlist. Please try again.
 		</div>
 
-		<!-- Wishlist Items -->
-		<div v-else-if="favoriteProducts && favoriteProducts?.length > 0" class="w-full flex flex-col space-y-[25px]">
-			<LayoutFavoritesItems :items="favoriteProducts" />
-			
-			<LayoutFavoritesButton/>
-		</div>
+    <!-- Wishlist Items -->
+    <div
+      v-else-if="favoriteProducts && favoriteProducts?.length > 0"
+      class="w-full flex flex-col space-y-[25px]"
+    >
+      <LayoutFavoritesItems :items="favoriteProducts" />
+
+      <LayoutFavoritesButton />
+    </div>
 
     <!-- Empty Wishlist -->
     <div v-else class="uppercase text-center text-base font-light">
