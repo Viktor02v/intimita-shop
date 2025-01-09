@@ -1,19 +1,12 @@
 import { ref } from "vue";
-import { useAddToWishList } from "~/composables/useAddToWishList";
+import { useFavorites } from "~/composables/useAddToWishList";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import type { Product } from "~/types/product.type";
 
 export function useMealMutations() {
-  const {
-    mutate: addToWishList,
-    isPending: isPendingAdd,
-    isError: isErrorAdd,
-  } = useAddToWishList();
-  const {
-    mutate: deleteToWishList,
-    isPending: isPending,
-    isError: isErrorDelete,
-  } = useDeleteToWishList();
+  const { checkIsFavorite, addToWishListMutation, deleteFromWishListMutation } =
+    useFavorites();
+
   const queryClient = useQueryClient();
 
   // Reactive state
@@ -25,8 +18,8 @@ export function useMealMutations() {
   const manageFavorite = async (product: Product, isFavorite: boolean) => {
     try {
       return isFavorite
-        ? await addToWishList(product)
-        : await deleteToWishList(product);
+        ? await addToWishListMutation.mutate(product)
+        : await deleteFromWishListMutation.mutate(product);
     } catch (error) {
       console.error("Error managing favorite:", error);
       throw error;
@@ -68,7 +61,7 @@ export function useMealMutations() {
       favoriteMap.value[meal.$id] = !favoriteMap.value[meal.$id];
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["favorites"]);
+      queryClient.invalidateQueries(["favorite-products"]);
     },
   });
 

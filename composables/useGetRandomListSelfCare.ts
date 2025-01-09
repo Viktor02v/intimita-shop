@@ -9,7 +9,7 @@ export function useGetRandomListSelfCare() {
       const allProducts = await DB.listDocuments(DB_ID, COLLECTION_ITEMS);
 
       // Shuffle products randomly
-      const shuffled = allProducts.documents.sort(() => Math.random() - 0.5);
+      const shuffled = allProducts.documents;
 
       // Filter products based on candlesType
 

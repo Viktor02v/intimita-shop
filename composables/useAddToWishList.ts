@@ -1,87 +1,79 @@
+import { reactive, computed } from "vue";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { DB } from "~/lib/appwrite";
-import {
-  DB_ID,
-  COLLECTION_SUBSCRIPTION,
-  COLLECTION_CART,
-  COLLECTION_FAVORITES,
-} from "~/app.constants";
+import { DB_ID, COLLECTION_FAVORITES } from "~/app.constants";
 import type { Product } from "~/types/product.type";
-import { v4 as uuidv4 } from "uuid";
 
-export function useAddToWishList() {
+const favoriteMap = reactive<Record<string, boolean>>({});
+
+export function useFavorites() {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  // Add to Wish List
+  const addToWishListMutation = useMutation({
     mutationKey: ["create-favorite"],
     mutationFn: async (item: Product) => {
-      try {
-        const newProduct = {
-          name: item.name,
-          price: item.price,
-          foto_url: item.foto_url,
-          type: item.type,
-          isOnSale: item.isOnSale,
-          onSalePrice: item.onSalePrice,
-          description: item.description,
-          selfCareType: item.selfCareType,
-          diffusersType: item.diffusersType,
-          candleType: item.candleType,
-          giftsType: item.giftsType,
-        };
-        console.log("Creating favorite with data:", newProduct);
+      const newProduct = {
+        name: item.name,
+        price: item.price,
+        foto_url: item.foto_url,
+        type: item.type,
+        isOnSale: item.isOnSale,
+        onSalePrice: item.onSalePrice,
+        description: item.description,
+        selfCareType: item.selfCareType,
+        diffusersType: item.diffusersType,
+        candleType: item.candleType,
+        giftsType: item.giftsType,
+      };
 
-        const response = await DB.createDocument(
-          DB_ID,
-          COLLECTION_FAVORITES,
-          item.$id,
-          newProduct
-        );
+      const response = await DB.createDocument(
+        DB_ID,
+        COLLECTION_FAVORITES,
+        item.$id,
+        newProduct
+      );
 
-        if (!response.$id) {
-          throw new Error("Failed to create favorite: Missing favorite ID");
-        }
-
-        return response;
-      } catch (error) {
-        console.error("Error creating favorite in Appwrite:", error);
-        throw error; // Propagate the error for onError to handle
+      if (!response.$id) {
+        throw new Error("Failed to create favorite: Missing favorite ID");
       }
+
+      favoriteMap[item.$id] = true; // Update reactive map
+      return response;
     },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries(["favorites"]);
-      console.log("Favorite created successfully:", data);
-    },
-    onError: (error) => {
-      console.error("Error creating favorite:", error);
+    onSuccess: () => {
+      queryClient.invalidateQueries(["favorite-products"]);
     },
   });
-}
-export function useDeleteToWishList() {
-  const queryClient = useQueryClient();
 
-  return useMutation({
+  // Delete from Wish List
+  const deleteFromWishListMutation = useMutation({
     mutationKey: ["delete-favorite"],
     mutationFn: async (item: Product) => {
-      try {
-        const response = await DB.deleteDocument(
-          DB_ID,
-          COLLECTION_FAVORITES,
-          item.$id
-        );
+      const response = await DB.deleteDocument(
+        DB_ID,
+        COLLECTION_FAVORITES,
+        item.$id
+      );
 
-        return response;
-      } catch (error) {
-        console.error("Error creating favorite in Appwrite:", error);
-        throw error; // Propagate the error for onError to handle
-      }
+      favoriteMap[item.$id] = false; // Update reactive map
+      return response;
     },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries(["favorites"]);
-      console.log("Favorite created successfully:", data);
-    },
-    onError: (error) => {
-      console.error("Error creating favorite:", error);
+    onSuccess: () => {
+      queryClient.invalidateQueries(["favorite-products"]);
     },
   });
+
+  // Check if a product is a favorite
+  const checkIsFavorite = (mealId: string | undefined) => {
+    if (!mealId) return false;
+    return favoriteMap[mealId] || false;
+  };
+
+  return {
+    favoriteMap,
+    addToWishListMutation,
+    deleteFromWishListMutation,
+    checkIsFavorite,
+  };
 }
