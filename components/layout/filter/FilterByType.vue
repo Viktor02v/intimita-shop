@@ -5,7 +5,6 @@ const emit = defineEmits(["updateOrders"]);
 
 // State to control the filter visibility
 const onOpen = ref(false);
-const searchQuery = ref("");
 
 // Props
 const props = defineProps<{
@@ -37,15 +36,6 @@ const onTypeFilter = () => {
   console.log(props.filterType);
   onOpen.value = false;
 };
-
-// // SearchQuery function
-// const onSearchQuery = () => {
-//   const filteredOrders = props.data.filter((data) =>
-//     data.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-//   );
-//   console.log("Search query applied:", filteredOrders); // Log filtered orders
-//   emit("updateOrders", filteredOrders);
-// };
 
 // Check if the orders are received correctly
 onMounted(() => {

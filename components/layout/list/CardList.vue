@@ -1,24 +1,29 @@
 <script setup lang="ts">
+import { defineProps } from "vue";
+import type { Product } from "~/types/product.type";
+const props = defineProps({
+  item: {
+    type: Object as () => Product,
+    required: true,
+  },
+});
 
-defineProps({
-	item: Object,
-	required: true,
-})
+onMounted(() => {
+  console.log(props.item);
+});
 </script>
 <template>
-	<div
-		class="shadow-[0_4px_15px_rgba(0,0,0,0.1)] relative rounded min-w-[240px] min-h-[360px] p-[25px] flex flex-col items-center">
+  <div
+    class="shadow-[0_4px_15px_rgba(0,0,0,0.1)] relative rounded min-w-[240px] min-h-[360px] p-[25px] flex flex-col items-center"
+  >
+    <LayoutListCardItem :item="item" />
 
-		<LayoutListCardItem :item="item"/>
+    <LayoutListOnSaleItem v-if="item.isOnSale" />
 
-		<LayoutListOnSaleItem v-if="item.isOnSale" />
+    <LayoutListFavoriteButton :item="props.item" />
 
-		<LayoutListFavoriteButton/>
-
-		<LayoutListAddToCartButton/>
-	</div>
+    <LayoutListAddToCartButton />
+  </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
