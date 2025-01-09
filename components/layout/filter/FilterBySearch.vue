@@ -91,11 +91,13 @@ const closeSearch = () => {
   <section class="w-[90%] flex flex-col justify-end items-end gap-8">
     <!-- Search Input -->
     <div class="flex flex-col items-center space-5 relative">
-      <div class="flex justify-between border rounded-lg  min-w-[280px] max-w-[290px] px-1">
+      <div
+        class="flex justify-between border rounded-lg min-w-[280px] max-w-[290px] px-1"
+      >
         <input
           @input="onSearchQuery"
           v-model="searchQuery"
-          class="bg-transparent border-none outline-none max-h-[35px] placeholder:text-[12px] min-w-[250px] max-w-[250px] p-2 "
+          class="bg-transparent border-none outline-none max-h-[35px] placeholder:text-[12px] min-w-[250px] max-w-[250px] p-2"
           type="text"
           placeholder="Search..."
         />
@@ -107,7 +109,7 @@ const closeSearch = () => {
       <!-- Search Results -->
       <div
         v-if="onSearchStore.isSearchOpen && searchData.length > 0"
-        class="bg-black w-full mt-4 absolute top-10 z-10 max-h-[30vh] overflow-y-auto scrollbar-none rounded-lg"
+        class="bg-black w-full mt-4 absolute top-10 max-h-[30vh] overflow-y-auto scrollbar-none rounded-lg"
       >
         <NuxtLink
           :to="`/products/${item.$id}`"
