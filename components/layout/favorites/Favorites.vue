@@ -56,7 +56,7 @@ const favoritesClasses = computed(() =>
     >
       <LayoutFavoritesItems :items="favoriteProducts" />
 
-      <LayoutFavoritesButton :item="favoriteProducts" />
+      <LayoutFavoritesButton />
     </div>
 
     <!-- Empty Wishlist -->

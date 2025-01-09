@@ -1,26 +1,53 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 import { useMealMutations } from "@/composables/useCheckFavorites";
-import { useAddToWishList } from "~/composables/useAddToWishList";
+import { useFavorites } from "~/composables/useAddToWishList";
+import { useGetFavoriteProducts } from "@/composables/useGetFavoriteProducts";
 import type { Product } from "~/types/product.type";
 
 const { toggleFavoriteMutation, favoriteMap, favorites } = useMealMutations();
-const { mutate, isPending, isError } = useAddToWishList();
 
+const { data: favoriteProducts = ref([]) as Ref<Product[]> } =
+  useGetFavoriteProducts();
+const { checkIsFavorite, addToWishListMutation, deleteFromWishListMutation } =
+  useFavorites();
+
+const isFavorite = computed(() => checkIsFavorite(props.item?.$id));
+
+const toggleFavorite = () => {
+  if (isFavorite.value) {
+    deleteFromWishListMutation.mutate(props.item);
+  } else {
+    addToWishListMutation.mutate(props.item);
+  }
+};
 const props = defineProps({
   item: {
     type: Object as () => Product,
     required: true,
   },
 });
-const checkIsFavorite = (mealId: string | undefined) => {
-  if (!mealId) return false; // Return false if mealId is undefined
-  return favoriteMap.value[mealId] || false;
-};
 
 onMounted(() => {
-  console.log(props.item);
+  if (Array.isArray(favoriteProducts.value)) {
+    favoriteProducts.value.forEach((product) => {
+      favoriteMap.value[product.$id] = true;
+    });
+  }
 });
+
+watch(
+  () => favoriteProducts.value,
+
+  (newData) => {
+    if (Array.isArray(newData)) {
+      newData.forEach((product) => {
+        favoriteMap.value[product.$id] = true;
+      });
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
