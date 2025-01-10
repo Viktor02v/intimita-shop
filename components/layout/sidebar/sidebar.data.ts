@@ -44,7 +44,6 @@ export const SIDEBAR_CANDLES_DATA: SidebarData[] = [
   },
   {
     name: "Soy candles",
-
     url: "/soy-candels",
   },
   {
@@ -56,7 +55,6 @@ export const SIDEBAR_CANDLES_DATA: SidebarData[] = [
 export const SIDEBAR_DIFFUSERS_DATA: SidebarData[] = [
   {
     name: "Aroma diffusers",
-
     url: "/sidebar-aroma-diffusers",
   },
   {
@@ -76,7 +74,6 @@ export const SIDEBAR_SELF_CARE_DATA: SidebarData[] = [
   },
   {
     name: "hand and body cream",
-
     url: "/sidebar-hand-and-body-cream",
   },
 ];

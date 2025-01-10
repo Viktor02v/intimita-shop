@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { ARROW_DATA } from "../arrow/arrow.data";
-import { useGetRandomListSelfCare } from "~/composables/useGetRandomListSelfCare";
+import { useGetSelfCare } from "~/composables/useGetSelfCare";
 
 const {
-  data: randomList,
+  data: selfCare,
   isPending: isPendingRandom,
   isError: isErrorRandom,
-} = useGetRandomListSelfCare();
+} = useGetSelfCare();
 
 const filteredList = ref<any>([]);
-console.log(randomList);
+console.log(selfCare);
 
 watch(
-  () => randomList?.value,
+  () => selfCare?.value,
   (newData) => {
     if (newData) {
-      filteredList.value = [...newData]; // Initialize with all meals
+      filteredList.value = [...newData]; 
     }
   },
   { immediate: true }
@@ -24,7 +24,7 @@ watch(
 
 const handleUpdateOrders = (updatedOrders: any) => {
   console.log("Updated orders in parent:", updatedOrders);
-  filteredList.value = updatedOrders; // Update the filtered orders
+  filteredList.value = updatedOrders;
   console.log("Filtered orders in parent:", updatedOrders.value);
 };
 </script>
@@ -33,19 +33,19 @@ const handleUpdateOrders = (updatedOrders: any) => {
   <div class="w-full h-full flex flex-col justify-center items-start">
     <div class="flex items-center gap-4">
       <LayoutFilterReset
-        :data="randomList ?? []"
+        :data="selfCare ?? []"
         :filterName="'Self care'"
         @updateOrders="handleUpdateOrders"
       />
       <LayoutFilterByType
-        :data="randomList ?? []"
+        :data="selfCare ?? []"
         :filterBy="'cuticle-oil'"
         :filterName="'cuticle-oil'"
         :filterType="'selfCareType'"
         @updateOrders="handleUpdateOrders"
       />
       <LayoutFilterByType
-        :data="randomList ?? []"
+        :data="selfCare ?? []"
         :filterBy="'hand-and-body-cream'"
         :filterName="'hand/body-cream'"
         :filterType="'selfCareType'"

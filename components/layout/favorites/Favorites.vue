@@ -41,13 +41,10 @@ const favoritesClasses = computed(() =>
       Loading...
     </div>
 
-    <!-- Error State -->
-    <div
-      v-if="isErrorFavoriteProducts"
-      class="uppercase text-center text-base font-light text-red-500"
-    >
-      Error loading Wishlist. Please try again.
-    </div>
+		<!-- Error State -->
+		<div v-if="isErrorFavoriteProducts" class="uppercase text-center text-base font-light text-red-500">
+			Error loading Wishlist. Please try again.
+		</div>
 
     <!-- Wishlist Items -->
     <div
@@ -66,4 +63,6 @@ const favoritesClasses = computed(() =>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

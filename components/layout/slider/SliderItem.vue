@@ -1,5 +1,20 @@
 <script setup lang="ts">
 import { ARROW_DATA } from "@/components/layout/arrow/arrow.data"
+
+import { useCarousel } from '@/components/ui/carousel/useCarousel'
+
+const { carouselApi, currentIndex, startAutoScroll, stopAutoScroll } = useCarousel()
+
+
+onMounted(() => {
+  startAutoScroll(); 
+});
+
+onUnmounted(() => {
+  stopAutoScroll();
+});
+
+
 const props = defineProps({
 	fotoUrl: String,
 	title: String,
@@ -10,7 +25,7 @@ const isHoverText = ref(false);
 </script>
 
 <template>
-	<div class="relative">
+	<div @mouseleave="startAutoScroll()" @mouseenter="stopAutoScroll()" class="relative">
 		<NuxtImg :src="fotoUrl" class="w-full min-h-[520px] max-h-[520px] brightness-50 overflow-hidden" />
 		<NuxtLink :to="url" class="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 			<div class="text-white flex flex-col items-center text-center">

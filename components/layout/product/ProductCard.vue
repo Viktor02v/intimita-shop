@@ -14,9 +14,7 @@ defineProps({
 		<LayoutProductImageSection :img="product?.foto_url" />
 
 		<!-- Content Section -->
-		<LayoutProductContentSection :name="product?.name" :description="product?.description"
-			:flavor-intensity="product?.flavorIntensity" :type="product?.type" :price="product?.price"
-			:on-sale="product?.isOnSale" :on-sale-price="product?.onSalePrice" />
+		<LayoutProductContentSection :item="product" />
 	</div>
 
 </template>
