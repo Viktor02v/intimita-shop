@@ -24,7 +24,7 @@ watch(
 
 const handleUpdateOrders = (updatedOrders: any) => {
   console.log("Updated orders in parent:", updatedOrders);
-  filteredList.value = updatedOrders; 
+  filteredList.value = updatedOrders; // Update the filtered orders
   console.log("Filtered orders in parent:", updatedOrders.value);
 };
 </script>

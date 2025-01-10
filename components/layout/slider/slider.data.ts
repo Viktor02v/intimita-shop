@@ -14,11 +14,11 @@ export const SLIDER_DATA:SLIDER_DATA[] = [
 	{
 		title:'Cuticle oil',
 		foto_url:'/slider/item-2.png',
-		url:'/self-care"'
+		url:'/self-care'
 	},
 	{
 		title:'Soy candles',
 		foto_url:'/slider/item-3.png',
-		url:'/candels'
+		url:'/candles'
 	}
 ]

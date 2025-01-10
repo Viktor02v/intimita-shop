@@ -4,12 +4,16 @@ import { SLIDER_DATA } from "@/components/layout/slider/slider.data"
 const isActiveNext = ref(false)
 const isActivePrevious = ref(false)
 
+const slides = ref(SLIDER_DATA || []);
+
+
+
 </script>
 <template>
-	<UiCarousel class="relative w-full overflow-hidden">
+	<UiCarousel  class="relative w-full overflow-hidden">
 		<UiCarouselContent>
-			<UiCarouselItem v-for="slide in SLIDER_DATA" :key="slide.foto_url">
-				<LayoutSliderItem :key="slide.foto_url" :fotoUrl="slide.foto_url" :title="slide.title" :url="slide.url" />
+			<UiCarouselItem v-for="(slide, index) in slides" :key="`${slide.title}-${index}`">
+				<LayoutSliderItem :fotoUrl="slide.foto_url" :title="slide.title" :url="slide.url" />
 			</UiCarouselItem>
 		</UiCarouselContent>
 

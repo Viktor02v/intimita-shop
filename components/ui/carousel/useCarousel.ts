@@ -40,12 +40,30 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
 
     const canScrollNext = ref(false);
     const canScrollPrev = ref(false);
+	 let autoScrollInterval: NodeJS.Timeout | null = null;
 
     // Callback function for handling changes in the selected slide
     function onSelect(api: CarouselApi) {
       canScrollNext.value = api?.canScrollNext() || false;
       canScrollPrev.value = api?.canScrollPrev() || false;
       currentIndex.value = api?.selectedScrollSnap() || 0; // Update currentIndex when slide changes
+    }
+
+
+	//  Auto-Scroll function
+	 function startAutoScroll(interval: number = 5000) {
+      stopAutoScroll(); // Clear any existing interval
+      autoScrollInterval = setInterval(() => {
+        scrollNext();
+      }, interval);
+    }
+
+//  Stop Auto-Scroll function
+    function stopAutoScroll() {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+      }
     }
 
     onMounted(() => {
@@ -63,6 +81,8 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
       carouselApi: emblaApi,
       canScrollPrev,
       canScrollNext,
+		startAutoScroll,
+      stopAutoScroll,
       scrollPrev,
       scrollNext,
       orientation,
@@ -81,3 +101,4 @@ function useCarousel() {
 }
 
 export { useCarousel, useProvideCarousel };
+
