@@ -8,11 +8,12 @@ defineProps({
   },
 });
 </script>
+
 <template>
   <div class="w-4/6 max-h-[320px] overflow-auto scrollbar-none">
     <div v-for="product in items" :key="product.$id" class="w-full">
       <div class="w-full relative flex items-center gap-[10px] mb-5">
-        <div
+        <NuxtLink :to="`/products/${product.$id}`"
           class="min-h-[140px] max-h-[140px] min-w-[140px] max-w-[140px] overflow-hidden flex items-center justify-center"
         >
           <NuxtImg
@@ -20,7 +21,7 @@ defineProps({
             class="object-contain"
             alt="Product Image"
           />
-        </div>
+        </NuxtLink>
 
         <div
           class="w-full min-h-[140px] max-h-[140px] py-[20px] flex flex-col justify-between"
@@ -44,7 +45,7 @@ defineProps({
         </div>
 
         <LayoutListFavoriteButton :item="product" />
-        <LayoutListAddToCartButton />
+        <LayoutListAddToCartButton :item="product" />
       </div>
     </div>
   </div>

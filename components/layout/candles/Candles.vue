@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { ref, watch } from "vue";
-import { useGetRandomListCandles } from "~/composables/useGetRandomListCandles";
+import { useGetCandles } from "~/composables/useGetCandles";
 
 const {
-  data: randomList,
-  isPending: isPendingRandom,
-  isError: isErrorRandom,
-} = useGetRandomListCandles();
+  data: candles,
+  isPending: isPendingCandles,
+  isError: isErrorCandles,
+} = useGetCandles();
 
 const filteredList = ref<any>([]);
-console.log(randomList);
+console.log(candles);
 
 watch(
-  () => randomList?.value,
+  () => candles?.value,
   (newData) => {
     if (newData) {
-      filteredList.value = [...newData]; // Initialize with all meals
+      filteredList.value = [...newData]; 
     }
   },
   { immediate: true }
@@ -24,7 +24,7 @@ watch(
 
 const handleUpdateOrders = (updatedOrders: any) => {
   console.log("Updated orders in parent:", updatedOrders);
-  filteredList.value = updatedOrders; // Update the filtered orders
+  filteredList.value = updatedOrders; 
   console.log("Filtered orders in parent:", updatedOrders.value);
 };
 </script>
@@ -33,26 +33,26 @@ const handleUpdateOrders = (updatedOrders: any) => {
   <div class="w-full h-full flex flex-col justify-center items-start">
     <div class="flex items-center gap-4">
       <LayoutFilterReset
-        :data="randomList ?? []"
+        :data="candles ?? []"
         :filterName="'Perfumed'"
         @updateOrders="handleUpdateOrders"
       />
       <LayoutFilterByType
-        :data="randomList ?? []"
+        :data="candles ?? []"
         :filterType="'candleType'"
         :filterBy="'perfumed'"
         :filterName="'Perfumed'"
         @updateOrders="handleUpdateOrders"
       />
       <LayoutFilterByType
-        :data="randomList ?? []"
+        :data="candles ?? []"
         :filterType="'candleType'"
         :filterBy="'craft'"
         :filterName="'Craft'"
         @updateOrders="handleUpdateOrders"
       />
       <LayoutFilterByType
-        :data="randomList ?? []"
+        :data="candles ?? []"
         :filterType="'candleType'"
         :filterBy="'soy'"
         :filterName="'Soy'"

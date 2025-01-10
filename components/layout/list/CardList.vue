@@ -22,7 +22,7 @@ onMounted(() => {
 
     <LayoutListFavoriteButton :item="props.item" />
 
-    <LayoutListAddToCartButton />
+    <LayoutListAddToCartButton :item="props.item" />
   </div>
 </template>
 

@@ -26,17 +26,6 @@ export function useMealMutations() {
     }
   };
 
-  //   const manageCart = async (product: Product, isInCart: boolean) => {
-  //     try {
-  //       return isInCart
-  //         ? await addToWishList(product)
-  //         : await deleteToWishList(product);
-  //     } catch (error) {
-  //       console.error("Error managing cart:", error);
-  //       throw error;
-  //     }
-  //   };
-
   // Toggle favorite mutation
   const toggleFavoriteMutation = useMutation({
     mutationFn: async (product: Product) => {
@@ -65,30 +54,9 @@ export function useMealMutations() {
     },
   });
 
-  //   // Toggle cart mutation
-  //   const toggleCartMutation = useMutation({
-  //     mutationFn: async (product: Product) => {
-  //       const isInCart = cartMap.value[product.$id];
-  //       await manageCart(product.$id, isInCart);
-  //       return !isInCart;
-  //     },
-  //     onMutate: async (meal: Product) => {
-  //       cartMap.value[meal.$id] = !cartMap.value[meal.$id];
-  //     },
-  //     onError: (error, meal) => {
-  //       console.error("Error toggling cart:", error);
-  //       cartMap.value[meal.$id] = !cartMap.value[meal.$id];
-  //     },
-  //     onSettled: () => {
-  //       queryClient.invalidateQueries(["cart-products"]);
-  //     },
-  //   });
-
   return {
     toggleFavoriteMutation,
-    // toggleCartMutation,
     favoriteMap,
-    // cartMap,
     favorites,
   };
 }

@@ -27,12 +27,12 @@ onMounted(() => {
 
 <template>
 	<button v-if="props.item" @click.prevent="toggleCartMutation.mutate(props.item)"
-		class="absolute right-[22px] text-[25px] bottom-[10px]" type="button">
-		<Icon :name="props.item && checkIsInCart(props.item?.$id)
-				? 'lsicon:minus-filled'
-				: 'gala:add'
-			" />
+		:class="[checkIsInCart(props.item.$id) ? 'bg-black text-white hover:bg-white hover:text-[#000000]':'', 'border hover:text-white hover:bg-black transition-all duration-200 rounded-full text-[15px] border-[#000000] font-medium py-[12px] px-[55px]']"
+		type="button">
+		{{ checkIsInCart(props.item.$id) ? 'Remove from Cart' : 'Add to Cart' }}
 	</button>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

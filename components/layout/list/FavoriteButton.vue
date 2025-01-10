@@ -12,15 +12,7 @@ const { data: favoriteProducts = ref([]) as Ref<Product[]> } =
 const { checkIsFavorite, addToWishListMutation, deleteFromWishListMutation } =
   useFavorites();
 
-const isFavorite = computed(() => checkIsFavorite(props.item?.$id));
 
-const toggleFavorite = () => {
-  if (isFavorite.value) {
-    deleteFromWishListMutation.mutate(props.item);
-  } else {
-    addToWishListMutation.mutate(props.item);
-  }
-};
 const props = defineProps({
   item: {
     type: Object as () => Product,
@@ -63,4 +55,6 @@ watch(
   </button>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
