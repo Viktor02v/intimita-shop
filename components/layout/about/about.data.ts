@@ -1,22 +1,22 @@
 interface Bilboard {
 	foto_url:string
+	title:string
 }
 
 interface Block extends Bilboard{
-	title:string
 	content:string
 	secondary_content?:string
 }
 
-interface BlockFeature extends Block {
+export interface BlockFeature extends Block {
 	foto_secondary:string
 }
 
 
-export const ABOUT_FEATURES_DATA: Block[] = [
+export const ABOUT_BLOCK_DATA: Block[] = [
 {
    title:"Poetry Home is a creative space where only true connoisseurs of complex perfume compositions enter.",
-   foto_url:"/about/about-block-1.jpg",
+   foto_url:"about/about-block-1.jpg",
    content:"​​But the possibilities here are wider than just enjoying niche fragrances.",
 },
 {
@@ -38,7 +38,7 @@ export const ABOUT_FEATURES_DATA: Block[] = [
 },
 ]
 
-export const ABOUT_BLOCK_DATA: BlockFeature[] = [
+export const ABOUT_FEATURES_DATA: BlockFeature[] = [
 {
 	title:"Possibilities",
 	foto_url:"/about/about-feature-1.jpg",
@@ -51,6 +51,7 @@ export const ABOUT_BLOCK_DATA: BlockFeature[] = [
 export const ABOUT_BILBOARD_DATA: Bilboard[] = [
 {
 	foto_url:"/about/about-bilboard.jpg",
+	title:"Bilboard",
 }
 ]
 
