@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { ABOUT_BLOCK_DATA, ABOUT_FEATURES_DATA, ABOUT_BILBOARD_DATA } from "@/components/layout/about/about.data"
+import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale";
+
+
 
 const infoBLocks = ref(ABOUT_BLOCK_DATA || []);
 const feature = ref(ABOUT_FEATURES_DATA || []);
 const bilboard = ref(ABOUT_BILBOARD_DATA || []);
+
+const { data: items } = useGetItemsOnSale();
 </script>
 
 
@@ -35,6 +40,11 @@ const bilboard = ref(ABOUT_BILBOARD_DATA || []);
 				:title="infoBLocks[3].title" :content="infoBLocks[3].content" />
 		</div>
 
+		<!-- Often buy list -->
+		<div class="my-[70px] w-full px-12">
+			<LazyTItleItem title="People often buy" />
+			<LazyLayoutList :items="items?.slice(4, 8)" />
+		</div>
 	</div>
 </template>
 
