@@ -2,6 +2,10 @@
 import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale";
 import { useSidebarStore } from "@/store/sidebar.store";
 
+import { computed } from "vue";
+
+const sidebarStore = useSidebarStore();
+
 import {
   SIDEBAR_TITLES,
   SIDEBAR_CANDLES_DATA,
@@ -11,7 +15,25 @@ import {
   SIDEBAR_SELF_CARE_DATA,
 } from "@/components/layout/sidebar/sidebar.data";
 
-const sidebarStore = useSidebarStore();
+const sidebar = ref<HTMLElement | null>(null);
+
+const closeSidebar = () => {
+  sidebarStore.isSidebarOpenCatalog = false;
+};
+
+const handleClickOutside = (event: Event) => {
+  if (sidebar.value && !sidebar.value.contains(event.target as Node)) {
+    closeSidebar();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>

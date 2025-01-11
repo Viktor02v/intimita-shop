@@ -18,7 +18,7 @@ export const SIDEBAR_TITLES: SidebarData[] = [
   },
   {
     name: "Gifts",
-    url: "/sidebar-gifts",
+    url: "/gifts",
   },
   {
     name: "Promotions and discounts",
@@ -40,69 +40,69 @@ export const SIDEBAR_TITLES: SidebarData[] = [
 export const SIDEBAR_CANDLES_DATA: SidebarData[] = [
   {
     name: "Perfume candles",
-    url: "/perfume-candels",
+    url: "/candles",
   },
   {
     name: "Soy candles",
-    url: "/soy-candels",
+    url: "/candles",
   },
   {
     name: "Craft candles",
-    url: "/craft-candels",
+    url: "/candles",
   },
 ];
 
 export const SIDEBAR_DIFFUSERS_DATA: SidebarData[] = [
   {
     name: "Aroma diffusers",
-    url: "/sidebar-aroma-diffusers",
+    url: "/diffusers",
   },
   {
     name: "Dry diffusers",
-    url: "/sidebar-dry-diffusers",
+    url: "/diffusers",
   },
   {
     name: "Interior diffusers",
-    url: "/sidebar-interior-diffusers",
+    url: "/diffusers",
   },
 ];
 
 export const SIDEBAR_SELF_CARE_DATA: SidebarData[] = [
   {
     name: "Cuticle oil",
-    url: "/sidebar-cuticle-oil",
+    url: "/self-care",
   },
   {
     name: "hand and body cream",
-    url: "/sidebar-hand-and-body-cream",
+    url: "/self-care",
   },
 ];
 
 export const SIDEBAR_GIFTS_DATA: SidebarData[] = [
   {
     name: "Cerfitificates",
-    url: "/sidebar-certificates",
+    url: "/gifts",
   },
   {
     name: "Gift sets",
-    url: "/sidebar-gift-sets",
+    url: "/gifts",
   },
 ];
 export const SIDEBAR_PROMOTIONS_AND_DISCOUNTS_DATA: SidebarData[] = [
   {
     name: "Candles",
-    url: "/sidebar-candels",
+    url: "/candles",
   },
   {
     name: "Diffusers",
-    url: "/sidebar-diffusers",
+    url: "/diffusers",
   },
   {
     name: "Self-care",
-    url: "/sidebar-self-care",
+    url: "/self-care",
   },
   {
     name: "Gifts",
-    url: "/sidebar-gifts",
+    url: "/gifts",
   },
 ];
