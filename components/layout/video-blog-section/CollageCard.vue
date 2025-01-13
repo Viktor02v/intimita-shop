@@ -58,7 +58,7 @@ const onBrightness = () => {
     <div class="max-w-[45vw] max-h-[45vh] overflow-hidden">
       <video :src="props.video_url" muted autoplay loop
         class="relative hover:scale-110 transition-all duration-700 transform -translate-y-[28%]"
-        :class="onBrightness()" />
+        :class="onBrightness()" loading="lazy"/>
     </div>
   </NuxtLink>
 </div>

@@ -8,11 +8,9 @@ defineProps({
 	},
 	img: {
 		type: String,
-		required: true,
 	},
 	imgBackup: {
 		type: String,
-		required: true,
 	},
 	title: {
 		type: String,
@@ -39,7 +37,7 @@ defineProps({
 		<template #content-block>
 			<div class="px-[80px] flex flex-col space-y-[30px]">
 				<h2 class="text-2xl break-words uppercase font-bold">{{ title }}</h2>
-				<p class="text-[15px]">{{ content }}</p>
+				<p class="text-[15px] text-format">{{ content }}</p>
 				<p v-if="secondaryContent" class="text-[15px]">
 					{{ secondaryContent }}
 				</p>
@@ -49,5 +47,7 @@ defineProps({
 </template>
 
 <style scoped>
-
+.text-format {
+  white-space: pre-wrap;
+}
 </style>
