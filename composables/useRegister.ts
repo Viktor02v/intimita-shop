@@ -16,24 +16,16 @@ export function useRegister() {
   return useMutation({
     mutationKey: ["register"],
     mutationFn: async ({
-      userName,
-
       email,
       password,
+      name,
     }: {
-      userName: string;
-
       email: string;
       password: string;
+      name: string;
     }) => {
       // Register the user
-      await account.create(
-        uuid(),
-        userName,
-
-        email,
-        password
-      );
+      await account.create(uuid(), email, password, name);
       // Automatically log in after successful registration
       await loginMutation.mutateAsync({ email, password });
     },
