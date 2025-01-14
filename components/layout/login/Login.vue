@@ -118,8 +118,45 @@ watch(sidebarStore, () => {
         {{ errorMessage }}
       </div>
       <div class="w-full flex flex-col justify-center items-center gap-5">
-        <div class="w-full">
+        <div v-if="onRegistrationOpen" class="w-full">
           <form>
+            <UiInput
+              v-model="emailRef"
+              placeholder="Email"
+              type="text"
+              class="mb-4 placeholder:text-gray-300 placeholder:text-[12px] text-black border-b border-gray-300 focus-visible:ring-0 focus:border-outline-none"
+            />
+            <UiInput
+              v-model="passwordRef"
+              placeholder="Password"
+              type="password"
+              class="mb-4 placeholder:text-gray-300 placeholder:text-[12px] text-black border-b border-gray-300 focus-visible:ring-0 outline-none focus:outline-none"
+            />
+
+            <div class="w-full flex flex-col justify-center items-center gap-5">
+              <p class="text-[10px] font-light">Forgot your password?</p>
+              <UiButton
+                type="button"
+                class="w-full bg-black rounded-2xl text-white hover:bg-gray-700"
+                @click="login"
+                >Login</UiButton
+              >
+            </div>
+          </form>
+        </div>
+        <div v-if="!onRegistrationOpen" class="w-full">
+          <form>
+            <UiInput
+              placeholder="First name"
+              type="text"
+              class="mb-4 placeholder:text-gray-300 border-b border-gray-300 placeholder:text-[12px] text-black focus-visible:ring-0"
+            />
+            <UiInput
+              placeholder="Second name"
+              type="text"
+              class="mb-4 placeholder:text-gray-300 border-b border-gray-300 placeholder:text-[12px] text-black focus-visible:ring-0"
+            />
+
             <UiInput
               v-model="emailRef"
               placeholder="Email"
@@ -140,16 +177,12 @@ watch(sidebarStore, () => {
               type="text"
               class="mb-4 placeholder:text-gray-300 text-black"
             />
-            <div class="flex justify-center items-center gap-5">
+
+            <div class="w-full flex flex-col justify-center items-center gap-5">
+              <p class="text-[10px] font-light">Forgot your password?</p>
               <UiButton
                 type="button"
-                class="bg-gray-800 text-white rounded hover:bg-gray-700"
-                @click="login"
-                >Login</UiButton
-              >
-              <UiButton
-                type="button"
-                class="bg-gray-800 text-white rounded hover:bg-gray-700"
+                class="w-full bg-black text-white rounded-2xl hover:bg-gray-700"
                 @click="register"
                 >Register</UiButton
               >
