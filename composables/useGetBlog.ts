@@ -8,7 +8,7 @@ return useQuery({
 	queryFn: async () => {
 		return await DB.getDocument(DB_ID, COLLECTION_BLOGS, blogId);
 	},
-	select: (data) => data,
+	select: (data) => data
 });
 }
 
