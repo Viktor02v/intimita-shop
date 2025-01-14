@@ -107,6 +107,7 @@ onUnmounted(() => {
     <LayoutCart />
     <!-- Favorites -->
     <LayoutFavorites />
+    <LayoutLogin />
   </div>
 </template>
 

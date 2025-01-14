@@ -11,7 +11,8 @@ const calculateOpacity = computed(() => {
     sidebarStore.isSidebarOpenCatalog ||
     sidebarStore.isSidebarOpenMore ||
     sidebarStore.isCartOpen ||
-    sidebarStore.isFavoritesOpen;
+    sidebarStore.isFavoritesOpen ||
+    sidebarStore.isLoginOpen;
 
   return isAnyOpen
     ? "opacity-50  transition-all duration-500 easy-in-out "
@@ -23,12 +24,14 @@ const closeSidebarIfOpen = () => {
     sidebarStore.isSidebarOpenCatalog ||
     sidebarStore.isSidebarOpenMore ||
     sidebarStore.isCartOpen ||
-    sidebarStore.isFavoritesOpen
+    sidebarStore.isFavoritesOpen ||
+    sidebarStore.isLoginOpen
   ) {
     sidebarStore.isSidebarOpenCatalog = false;
     sidebarStore.isSidebarOpenMore = false;
     sidebarStore.isCartOpen = false;
     sidebarStore.isFavoritesOpen = false;
+    sidebarStore.isLoginOpen = false;
   } else {
     return;
   }

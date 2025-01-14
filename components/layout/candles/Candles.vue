@@ -2,6 +2,7 @@
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { ref, watch } from "vue";
 import { useGetCandles } from "~/composables/useGetCandles";
+import { candleFilters } from "@/components/layout/filter/filters";
 
 const {
   data: candles,
@@ -16,7 +17,7 @@ watch(
   () => candles?.value,
   (newData) => {
     if (newData) {
-      filteredList.value = [...newData]; 
+      filteredList.value = [...newData];
     }
   },
   { immediate: true }
@@ -38,24 +39,12 @@ const handleUpdateOrders = (updatedOrders: any) => {
         @updateOrders="handleUpdateOrders"
       />
       <LayoutFilterByType
+        v-for="filter in candleFilters"
+        :key="filter.filterBy"
         :data="candles ?? []"
         :filterType="'candleType'"
-        :filterBy="'perfumed'"
-        :filterName="'Perfumed'"
-        @updateOrders="handleUpdateOrders"
-      />
-      <LayoutFilterByType
-        :data="candles ?? []"
-        :filterType="'candleType'"
-        :filterBy="'craft'"
-        :filterName="'Craft'"
-        @updateOrders="handleUpdateOrders"
-      />
-      <LayoutFilterByType
-        :data="candles ?? []"
-        :filterType="'candleType'"
-        :filterBy="'soy'"
-        :filterName="'Soy'"
+        :filterBy="filter.filterBy"
+        :filterName="filter.filterName"
         @updateOrders="handleUpdateOrders"
       />
     </div>
