@@ -35,6 +35,12 @@ export function useRegister() {
     onSuccess() {
       isLoadingStore.set(false);
 
+		authStore.setUserData({
+			email: authStore.emailRef,
+			name: authStore.nameRef,
+			status: true, // Set the status to true after successful registration/login
+		 });
+
       router.push("/"); // Redirect to the home page after successful registration
     },
     onError(error) {
