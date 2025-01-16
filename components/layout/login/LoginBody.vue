@@ -12,12 +12,16 @@ const authStore = useAuthStore();
 
 		<div class="w-full flex flex-col justify-center items-center gap-5">
 			<!-- Login -->
-			<LayoutLoginForm v-if="authStore.isFormOpen" />
+			<LayoutLoginForm v-if="authStore.isFormOpen && !authStore.isRessetFormOpen" />
 
 			<!-- Registration -->
-			<LayoutLoginRegistrationForm v-if="!authStore.isFormOpen" />
+			<LayoutLoginRegistrationForm v-if="!authStore.isFormOpen && !authStore.isRessetFormOpen" />
+
+			<LayoutLoginRessetForm v-if="authStore.isRessetFormOpen" />
 		</div>
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
