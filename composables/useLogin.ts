@@ -3,12 +3,15 @@ import { useMutation } from "@tanstack/vue-query";
 import { account } from "@/lib/appwrite"; // Assuming this is your Appwrite account service
 import { useAuthStore, useIsLoadingStore } from "~/store/auth.store";
 import { useRouter } from "vue-router";
+import { useSidebarStore } from "@/store/sidebar.store";
+
 
 export function useLogin() {
   const router = useRouter();
   const isLoadingStore = useIsLoadingStore();
   const authStore = useAuthStore();
   const errorMessage = ref<string | null>(null);
+  const sidebarStore = useSidebarStore();
 
   return useMutation({
     mutationKey: ["login"],
@@ -41,8 +44,8 @@ export function useLogin() {
     async onSuccess() {
       // Reset loading state
       isLoadingStore.set(false);
+		sidebarStore.toggleLoginOpen();
 
-      // Navigate to home and reload the page to ensure the app reflects the new state
       router.push("/");
       setTimeout(() => {
         window.location.reload();

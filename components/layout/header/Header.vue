@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser"
 import { useGetCartProducts } from "@/composables/useGetCartProducts";
 import { useGetFavoriteProducts } from "@/composables/useGetFavoriteProducts";
 import { toggleSidebar } from "@/composables/useToggleSidebar";
@@ -11,6 +12,8 @@ const sidebarStore = useSidebarStore();
 const { data: cartProducts = [] } = useGetCartProducts();
 const { data: favoriteProducts = [] } = useGetFavoriteProducts();
 
+
+const { user, isLoading, error, fetchUser } = useAppwriteUser();
 const {
   data: randomList,
   isPending: isPendingRandom,
@@ -55,7 +58,7 @@ watch(sidebarStore, () => {
       >
         <Icon
           @click="toggleSidebar('Profile')"
-          name="fluent:person-32-light"
+          :name="user ? 'fluent:person-32-light' : 'fluent:person-warning-20-regular'"
           :class="[
             sidebarStore.isLoginOpen ? 'text-[#FFD095]' : '',
             'hover:text-[#FFD095] text-[30px] cursor-pointer',

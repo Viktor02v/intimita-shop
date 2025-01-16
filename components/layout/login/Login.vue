@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser"
+
 import { computed } from "vue";
 import { useSidebarStore } from "@/store/sidebar.store";
 
@@ -11,7 +13,7 @@ const loginClasses = computed(() =>
 		: "translate-x-full duration-1000 opacity-100"
 );
 
-
+const { user, isLoading, error, fetchUser } = useAppwriteUser();
 
 </script>
 
@@ -25,7 +27,7 @@ const loginClasses = computed(() =>
 		<LayoutLoginHeader />
 
 		<!-- Logout -->
-		<LayoutLoginLogout />
+		<LayoutLoginLogout v-if="user" />
 
 		<!-- Body -->
 		<LayoutLoginBody />
@@ -33,6 +35,4 @@ const loginClasses = computed(() =>
 	</div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -11,6 +11,9 @@ const logout = async () => {
 		console.log("Session deleted successfully.");
 		authStore.set({ email: "", name: "", status: false });
 		console.log("Auth store updated:", authStore.$state);
+		setTimeout(() => {
+        window.location.reload();
+      }, 100);
 	} catch (error) {
 		console.error("Logout failed:", error);
 		authStore.errorMessage = "Logout failed. Please try again.";

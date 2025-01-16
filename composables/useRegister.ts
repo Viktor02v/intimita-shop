@@ -4,6 +4,9 @@ import { account } from "@/lib/appwrite"; // Assuming this is your Appwrite acco
 import { useAuthStore, useIsLoadingStore } from "~/store/auth.store"; // Assuming separate loading store
 import { useRouter } from "vue-router";
 import { v4 as uuid } from "uuid";
+import { useSidebarStore } from "@/store/sidebar.store";
+
+
 
 // Create a custom mutation for registration
 export function useRegister() {
@@ -12,6 +15,7 @@ export function useRegister() {
   const authStore = useAuthStore(); // Assuming this is your auth store
   const errorMessage = ref<string | null>(null);
   const loginMutation = useLogin(); // Use the login mutation here
+  const sidebarStore = useSidebarStore();
 
   return useMutation({
     mutationKey: ["register"],
@@ -41,7 +45,8 @@ export function useRegister() {
 			status: true, // Set the status to true after successful registration/login
 		 });
 
-      router.push("/"); // Redirect to the home page after successful registration
+		 sidebarStore.toggleLoginOpen();
+		 
     },
     onError(error) {
       console.error("Registration error:", error);
