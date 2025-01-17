@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser"
 
+
 import { computed } from "vue";
 import { useSidebarStore } from "@/store/sidebar.store";
 
@@ -19,7 +20,7 @@ const { user, isLoading, error, fetchUser } = useAppwriteUser();
 
 <template>
 	<div id="profile" role="dialog" aria-labelledby="profile-title" :aria-hidden="!sidebarStore.isLoginOpen" :class="[
-		'fixed top-[120px] right-0 h-[57.7vh] w-[34vw] bg-white py-6 flex flex-col z-50 justify-start items-center',
+		'fixed top-[120px] right-0 h-[57.7vh] w-[34vw] bg-white py- flex flex-col z-50 justify-start items-center',
 		loginClasses,
 	]">
 

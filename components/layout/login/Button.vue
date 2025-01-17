@@ -13,11 +13,9 @@ const props = defineProps({
 </script>
 
 <template>
-	<div>
-		<UiButton :type="props.type" class="w-full bg-black text-white rounded-2xl hover:bg-gray-700">
-			<slot />
-		</UiButton>
-	</div>
+	<UiButton :type="props.type" class="w-full rounded-2xl bg-black text-white hover:text-[#FFD095] hover:bg-black transition-all duration-300 font-light text-[15px] ">
+		<slot />
+	</UiButton>
 </template>
 
 <style scoped></style>

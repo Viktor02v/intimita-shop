@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser"
 import { useAuthStore } from "@/store/auth.store";
 
 const authStore = useAuthStore();
+
+const { user, isLoading, error, fetchUser } = useAppwriteUser();
 </script>
 <template>
-			<div class="w-[50%]">
-				<h1 class="text-3xl font-bold text-center mb-3 text-black">{{!authStore.isRessetFormOpen ? ' Account' :'Resset Password'}}</h1>
-				<div class="flex gap-5 py-6">
-					<UiButton @click="authStore.toggleForm()"
+			<div class="w-[50%] mt-[66px]">
+				<h1 class="text-3xl font-bold text-center text-black">{{!authStore.isRessetFormOpen ? ' Account' :'Resset Password'}}</h1>
+				<div class="flex gap-5 py-[37px]">
+					<UiButton v-if="!user" @click="authStore.toggleForm()"
 						class="w-full bg-black text-white hover:text-[#FFD095] hover:bg-black transition-all duration-300  text-[12px] rounded-2xl px-2 h-8">
 						Login
 					</UiButton>

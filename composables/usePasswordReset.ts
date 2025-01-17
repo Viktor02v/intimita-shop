@@ -10,7 +10,7 @@ export function usePasswordReset() {
     mutationKey: ["sendResetEmail"],
     mutationFn: async (email: string) => {
       // Send recovery email
-      await account.createRecovery(email, "http://localhost"); 
+      await account.createRecovery(email, "https://reset02v.netlify.app/"); 
     },
     onSuccess() {
       successMessage.value = "Password reset email sent. Check your inbox.";

@@ -25,7 +25,7 @@ export const useAuthStore = defineStore("auth", {
 		const nameRef = ref("");
 		const emailRef = ref("");
 		const passwordRef = ref("");
-		const isFormOpen = ref(false);
+		const isFormOpen = ref(true);
 		const isRessetFormOpen = ref(false);
 
 		return {
