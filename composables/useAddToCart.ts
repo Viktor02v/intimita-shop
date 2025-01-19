@@ -48,6 +48,7 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["cart-products"]);
+		sidebarStore.toggleCartOpen();
     },
   });
 
@@ -86,6 +87,9 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["cart-products"]);
+		setTimeout(() => {
+			window.location.reload();
+		 }, 100);
     },
   });
 

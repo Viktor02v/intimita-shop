@@ -33,7 +33,7 @@ const goTo = () => {
     aria-labelledby="cart-title"
     :aria-hidden="!sidebarStore.isCartOpen"
     :class="[
-      'fixed top-[120px] right-0 h-[57.7vh] w-[34vw] bg-white flex flex-col z-50 py-6',
+      'fixed top-[120px] right-0 h-[57.7vh] w-[34vw] bg-white flex flex-col z-50 pb-[100px]',
       cartClasses,
     ]"
   >
