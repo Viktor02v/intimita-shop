@@ -3,15 +3,16 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { DB } from "~/lib/appwrite";
 import { DB_ID, COLLECTION_CART } from "~/app.constants";
 import type { Product } from "~/types/product.type";
-import {useSidebarStore} from "@/store/sidebar.store"
-
+import { useSidebarStore } from "@/store/sidebar.store";
+import { set } from "@vueuse/core";
 
 const cartMap = reactive<Record<string, boolean>>({});
 
 export function useAddToCart() {
   const queryClient = useQueryClient();
+  let closeTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  const sidebarStore = useSidebarStore()
+  const sidebarStore = useSidebarStore();
 
   // Add to Wish List
   const addToCart = useMutation({
@@ -47,7 +48,6 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["cart-products"]);
-		sidebarStore.toggleCartOpen()
     },
   });
 
@@ -69,6 +69,26 @@ export function useAddToCart() {
     },
   });
 
+  const deleteAllCartItems = useMutation({
+    mutationKey: ["delete-all-cart-items"],
+    mutationFn: async () => {
+      try {
+        // Fetch all cart items
+        const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
+
+        // Delete each cart item
+        for (const item of cartItems.documents) {
+          await DB.deleteDocument(DB_ID, COLLECTION_CART, item.$id);
+        }
+      } catch (error) {
+        console.error("Error deleting cart items:", error);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["cart-products"]);
+    },
+  });
+
   // Check if a product is a favorite
   const checkIsInCart = (mealId: string | undefined) => {
     if (!mealId) return false;
@@ -76,9 +96,10 @@ export function useAddToCart() {
   };
 
   return {
-	cartMap,
-	addToCart,
-	deleteFromCart,
-	checkIsInCart,
+    cartMap,
+    addToCart,
+    deleteFromCart,
+    deleteAllCartItems,
+    checkIsInCart,
   };
 }
