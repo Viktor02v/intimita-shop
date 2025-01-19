@@ -25,7 +25,8 @@ export const useAuthStore = defineStore("auth", {
 		const nameRef = ref("");
 		const emailRef = ref("");
 		const passwordRef = ref("");
-		const isFormOpen = ref(false);
+		const isFormOpen = ref(true);
+		const isRessetFormOpen = ref(false);
 
 		return {
 		...getDefaultAuthState(),
@@ -34,6 +35,7 @@ export const useAuthStore = defineStore("auth", {
 		passwordRef,
 		errorMessage,
 		isFormOpen,
+		isRessetFormOpen,
 		};
 	},
 
@@ -63,7 +65,11 @@ actions: {
       });
    },
 	toggleForm() {
-	this.isFormOpen = !this.isFormOpen; 
+	this.isFormOpen = !this.isFormOpen;
+	this.isRessetFormOpen = false;
+	},
+	toggleRessetForm() {
+		this.isRessetFormOpen = !this.isRessetFormOpen; 
 	}
 },
 });

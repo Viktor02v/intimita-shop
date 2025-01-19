@@ -20,8 +20,8 @@ const login = async () => {
 		<UiInput v-model="authStore.emailRef" placeholder="Email" type="text" class="input" />
 		<UiInput v-model="authStore.passwordRef" placeholder="Password" type="password" class="input" />
 
-		<div class="w-full flex flex-col justify-center items-center gap-5">
-			<p class="text-[10px] font-light">Forgot your password?</p>
+		<div class="w-full flex flex-col justify-center mt-10 items-center gap-5">
+			<LayoutLoginForgot />
 			<LayoutLoginButton type="button" @click="login">
 				Login
 			</LayoutLoginButton>
