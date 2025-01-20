@@ -9,6 +9,22 @@ const favoriteMap = reactive<Record<string, boolean>>({});
 export function useFavorites() {
   const queryClient = useQueryClient();
 
+    // Function to fetch the cart products on load and initialize cartMap
+	 const initializeFavoritesMap = async () => {
+		try {
+		  const FavoriteItems = await DB.listDocuments(DB_ID, COLLECTION_FAVORITES);
+		  FavoriteItems.documents.forEach((item: Product) => {
+			favoriteMap[item.$id] = true; // Set the items as present in the cart
+		  });
+		} catch (error) {
+		  console.error("Error initializing cart map:", error);
+		}
+	 };
+  
+	 onMounted(() => {
+		initializeFavoritesMap();
+	 });
+
   // Add to Wish List
   const addToWishListMutation = useMutation({
     mutationKey: ["create-favorite"],
