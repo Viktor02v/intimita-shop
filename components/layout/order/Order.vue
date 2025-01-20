@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 import { useSidebarStore } from "@/store/sidebar.store";
-import { computed } from "vue";
 
 import { useAddToCart } from "@/composables/useAddToCart";
 import { useGetCartProducts } from "@/composables/useGetCartProducts";
 
-const { toggleCartMutation, cartMap } = useCartMutation();
+const { cartMap } = useCartMutation();
 const { data: productsInCart = ref([]) } = useGetCartProducts();
 
 const countryRef = ref("");
@@ -26,28 +25,35 @@ const { makeAnOrder } = useMakeAnOrder({
 });
 
 onMounted(() => {
-  if (Array.isArray(productsInCart.value)) {
-    productsInCart.value.forEach((product) => {
-      cartMap.value[product.$id] = true;
-    });
-  }
+	if (Array.isArray(productsInCart.value)) {
+		productsInCart.value.forEach((product) => {
+			cartMap.value[product.$id] = true;
+		});
+	}
 });
 
 const props = defineProps({
-  items: {
-    type: Object,
-    required: true,
-  },
+	items: {
+		type: Object,
+		required: true,
+	},
 });
 
 const sidebarStore = useSidebarStore();
+
 onMounted(() => {
-  console.log(props.items);
+	console.log(props.items);
 });
 console.log(props.items);
 </script>
+
 <template>
-  <div class="w-full h-full bg-black">
+	<div :class="sidebarStore.isOrderOpen
+		? 'translate-y-0 duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-40'
+		: '-translate-y-[70vh] duration-700 opacity-0 absolute top-0 left-0 w-full h-full z-0'
+		" v-if="items && items?.length > 0">
+
+		  <div class="w-full h-full bg-black">
     <div class="w-full text-center">
       <div class="text-3xl font-light text-white pb-8">Order</div>
     </div>
@@ -113,6 +119,9 @@ console.log(props.items);
       </UiButton>
     </div>
   </div>
+	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
