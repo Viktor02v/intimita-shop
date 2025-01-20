@@ -23,6 +23,19 @@ onMounted(() => {
 		});
 	}
 });
+
+watch(
+  () => productsInCart.value,
+
+  (newData) => {
+    if (Array.isArray(newData)) {
+      newData.forEach((product) => {
+			cartMap.value[product.$id] = true;
+      });
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -35,4 +48,6 @@ onMounted(() => {
 	</button>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

@@ -1,4 +1,4 @@
-import { reactive, computed } from "vue";
+import { reactive, computed, onMounted } from "vue";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { DB } from "~/lib/appwrite";
 import { DB_ID, COLLECTION_CART } from "~/app.constants";
@@ -10,11 +10,25 @@ const cartMap = reactive<Record<string, boolean>>({});
 
 export function useAddToCart() {
   const queryClient = useQueryClient();
-  let closeTimeout: ReturnType<typeof setTimeout> | null = null;
-
   const sidebarStore = useSidebarStore();
 
-  // Add to Wish List
+  // Function to fetch the cart products on load and initialize cartMap
+  const initializeCartMap = async () => {
+    try {
+      const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
+      cartItems.documents.forEach((item: Product) => {
+        cartMap[item.$id] = true; // Set the items as present in the cart
+      });
+    } catch (error) {
+      console.error("Error initializing cart map:", error);
+    }
+  };
+
+  onMounted(() => {
+    initializeCartMap();
+  });
+
+  // Add to Cart
   const addToCart = useMutation({
     mutationKey: ["create-item-in-cart"],
     mutationFn: async (item: Product) => {
@@ -40,7 +54,7 @@ export function useAddToCart() {
       );
 
       if (!response.$id) {
-        throw new Error("Failed to create favorite: Missing favorite ID");
+        throw new Error("Failed to create cart item: Missing ID");
       }
 
       cartMap[item.$id] = true; // Update reactive map
@@ -48,11 +62,11 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["cart-products"]);
-		sidebarStore.toggleCartOpen();
+      sidebarStore.toggleCartOpen();
     },
   });
 
-  // Delete from Wish List
+  // Delete from Cart
   const deleteFromCart = useMutation({
     mutationKey: ["delete-from-cart"],
     mutationFn: async (item: Product) => {
@@ -74,10 +88,7 @@ export function useAddToCart() {
     mutationKey: ["delete-all-cart-items"],
     mutationFn: async () => {
       try {
-        // Fetch all cart items
         const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
-
-        // Delete each cart item
         for (const item of cartItems.documents) {
           await DB.deleteDocument(DB_ID, COLLECTION_CART, item.$id);
         }
@@ -87,16 +98,16 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["cart-products"]);
-		setTimeout(() => {
-			window.location.reload();
-		 }, 100);
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     },
   });
 
-  // Check if a product is a favorite
-  const checkIsInCart = (mealId: string | undefined) => {
-    if (!mealId) return false;
-    return cartMap[mealId] || false;
+  // Check if a product is in the cart
+  const checkIsInCart = (productId: string | undefined) => {
+    if (!productId) return false;
+    return cartMap[productId] || false;
   };
 
   return {
