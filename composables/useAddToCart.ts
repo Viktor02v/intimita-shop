@@ -84,25 +84,6 @@ export function useAddToCart() {
     },
   });
 
-  const deleteAllCartItems = useMutation({
-    mutationKey: ["delete-all-cart-items"],
-    mutationFn: async () => {
-      try {
-        const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
-        for (const item of cartItems.documents) {
-          await DB.deleteDocument(DB_ID, COLLECTION_CART, item.$id);
-        }
-      } catch (error) {
-        console.error("Error deleting cart items:", error);
-      }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["cart-products"]);
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
-    },
-  });
 
   // Check if a product is in the cart
   const checkIsInCart = (productId: string | undefined) => {
@@ -114,7 +95,6 @@ export function useAddToCart() {
     cartMap,
     addToCart,
     deleteFromCart,
-    deleteAllCartItems,
     checkIsInCart,
   };
 }

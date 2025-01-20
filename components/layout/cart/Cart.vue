@@ -3,9 +3,6 @@ import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser";
 import { useGetCartProducts } from "@/composables/useGetCartProducts";
 import { useSidebarStore } from "@/store/sidebar.store";
 import { computed } from "vue";
-import { useIsOrderStore } from "@/store/order.store";
-
-const isOrderStore = useIsOrderStore();
 
 const sidebarStore = useSidebarStore();
 
@@ -28,9 +25,6 @@ const goTo = () => {
 	sidebarStore.toggleLoginOpen();
 };
 
-watchEffect(() => {
-	console.log(sidebarStore.isOrderOpen);
-});
 </script>
 
 
@@ -42,11 +36,8 @@ watchEffect(() => {
 
 		<LayoutOrder :items="cartProducts" />
 
-		<div :class="isOrderStore.isOrderComplete && !sidebarStore.isOrderOpen
-			? 'translate-y-0 duration-1000 opacity-100 absolute top-0 left-0 w-full h-full z-40'
-			: '-translate-y-[70vh] duration-1000 opacity-0 absolute top-0 left-0 w-full h-full z-0'
-			" class="w-full h-full bg-[#000000] text-white text-3xl flex justify-center items-center font-light font-monospace absolute top-0 left-0 z-50">
-		</div>
+		<LayoutOrderComplete />
+
 		<!-- Header -->
 		<h1 id="cart-title" class="font-light text-center mb-[43px] text-[32px]">
 			Cart
