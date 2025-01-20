@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser"
-
-
 import { computed } from "vue";
 import { useSidebarStore } from "@/store/sidebar.store";
 
