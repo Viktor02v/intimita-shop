@@ -1,35 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetSelfCare } from "~/composables/useGetSelfCare";
 import { selfCareFilter } from "@/components/layout/filter/filters";
 import { useActiveFilter } from "@/composables/useActiveFilter"
+import { useFilteredList } from "@/composables/useFilteredList"
 
-const { activeFilter,
-	setActiveFilter,
-	isFilterActive, } = useActiveFilter();
+const { data: selfCare, isPending: isPendingRandom, isError: isErrorRandom } = useGetSelfCare();
 
-const {
-	data: selfCare,
-	isPending: isPendingRandom,
-	isError: isErrorRandom,
-} = useGetSelfCare();
+const { activeFilter, setActiveFilter, isFilterActive, } = useActiveFilter();
 
-const filteredList = ref<any>([]);
-
-watch(
-	() => selfCare?.value,
-	(newData) => {
-		if (newData) {
-			filteredList.value = [...newData];
-		}
-	},
-	{ immediate: true }
-);
-
-const handleUpdateOrders = (updatedOrders: any) => {
-	filteredList.value = updatedOrders;
-};
+const { filteredList, handleUpdateOrders } = useFilteredList(selfCare?.value);
 
 </script>
 
@@ -53,4 +33,3 @@ const handleUpdateOrders = (updatedOrders: any) => {
 	</div>
 </template>
 
-<style scoped></style>

@@ -4,6 +4,7 @@ import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetDiffusers } from "~/composables/useGetDiffusers";
 import { diffuserFilter } from "@/components/layout/filter/filters";
 import { useActiveFilter } from "@/composables/useActiveFilter"
+import { useFilteredList } from "@/composables/useFilteredList"
 
 const { activeFilter,
 	setActiveFilter,
@@ -15,21 +16,7 @@ const {
 	isError: isErrorRandom,
 } = useGetDiffusers();
 
-const filteredList = ref<any>([]);
-
-watch(
-	() => diffusers?.value,
-	(newData) => {
-		if (newData) {
-			filteredList.value = [...newData];
-		}
-	},
-	{ immediate: true }
-);
-
-const handleUpdateOrders = (updatedOrders: any) => {
-	filteredList.value = updatedOrders;
-};
+const { filteredList, handleUpdateOrders } = useFilteredList(diffusers?.value);
 </script>
 
 <template>
@@ -54,4 +41,3 @@ const handleUpdateOrders = (updatedOrders: any) => {
 	</div>
 </template>
 
-<style scoped></style>

@@ -26,7 +26,6 @@ watch(
 );
 
 // Filter functions
-
 const onFilterClick = () => {
 	const filteredOrders = props.data.filter((item) => item[props.filterType] === props.filterBy);
 	emit("updateOrders", filteredOrders);

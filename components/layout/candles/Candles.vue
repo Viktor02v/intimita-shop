@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ARROW_DATA } from "../arrow/arrow.data";
-import { ref, watch } from "vue";
 import { useGetCandles } from "~/composables/useGetCandles";
 import { candleFilters } from "@/components/layout/filter/filters";
 import { useActiveFilter } from "@/composables/useActiveFilter"
+import { useFilteredList } from "@/composables/useFilteredList"
 
 const { activeFilter,
 	setActiveFilter,
@@ -15,24 +15,8 @@ const {
 	isError: isErrorCandles,
 } = useGetCandles();
 
-const filteredList = ref<any>([]);
-console.log(candles);
+const { filteredList, handleUpdateOrders } = useFilteredList(candles?.value);
 
-watch(
-	() => candles?.value,
-	(newData) => {
-		if (newData) {
-			filteredList.value = [...newData];
-		}
-	},
-	{ immediate: true }
-);
-
-const handleUpdateOrders = (updatedOrders: any) => {
-	console.log("Updated orders in parent:", updatedOrders);
-	filteredList.value = updatedOrders; // Update the filtered orders
-	console.log("Filtered orders in parent:", updatedOrders.value);
-};
 </script>
 
 <template>
@@ -54,5 +38,3 @@ const handleUpdateOrders = (updatedOrders: any) => {
 		</section>
 	</div>
 </template>
-
-<style scoped></style>
