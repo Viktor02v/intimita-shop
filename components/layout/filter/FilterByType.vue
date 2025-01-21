@@ -3,9 +3,6 @@ import { ref, onMounted, watch, defineEmits, defineProps } from "vue";
 
 const emit = defineEmits(["updateOrders", "setActiveFilter"]);
 
-// State to control the filter visibility
-const onOpen = ref(false);
-
 // Props
 const props = defineProps<{
 	data: any[];
@@ -15,15 +12,6 @@ const props = defineProps<{
 	isActive: boolean;
 }>();
 
-// Watch for changes in orders prop
-watch(
-	() => props.data,
-	(newOrders, oldOrders) => {
-		console.log("Orders updated:", newOrders); // Logs the updated orders whenever it changes
-		console.log("Previous orders:", oldOrders); // Logs the previous orders
-	},
-	{ immediate: true } // Runs immediately on mount
-);
 
 // Filter functions
 const onFilterClick = () => {

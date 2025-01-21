@@ -1,26 +1,26 @@
-import { ref, watch } from "vue";
+import { ref, watch, type Ref } from "vue";
 
-export function useFilteredList(data: any[]) {
-  const filteredList = ref<any[]>([]);
+export function useFilteredList(data: Ref<any[] | null>) {
+const filteredList = ref<any[]>([]);
 
-  watch(
-    () => data,
-    (newData) => {
+
+watch(
+   () => data.value,
+   (newData) => {
       if (newData) {
-        filteredList.value = [...newData];
+      filteredList.value = [...newData];
       }
-    },
-    { immediate: true }
-  );
+   },
+   { immediate: true }
+);
 
-  // Function to update the filtered list
-  const handleUpdateOrders = (updatedOrders: any) => {
-    filteredList.value = updatedOrders;
-    console.log("Updated orders:", updatedOrders);
-  };
 
-  return {
-    filteredList,
-    handleUpdateOrders,
-  };
+const handleUpdateOrders = (updatedOrders: any) => {
+   filteredList.value = updatedOrders;
+};
+
+return {
+   filteredList,
+   handleUpdateOrders,
+};
 }

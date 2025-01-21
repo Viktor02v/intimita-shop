@@ -2,21 +2,25 @@
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetSelfCare } from "~/composables/useGetSelfCare";
 import { selfCareFilter } from "@/components/layout/filter/filters";
-import { useActiveFilter } from "@/composables/useActiveFilter"
+import { useActiveFilter } from "~/composables/useActiveFilter"
 import { useFilteredList } from "@/composables/useFilteredList"
 
 const { data: selfCare, isPending: isPendingRandom, isError: isErrorRandom } = useGetSelfCare();
 
-const { activeFilter, setActiveFilter, isFilterActive, } = useActiveFilter();
+const { activeFilter, setActiveFilter, isFilterActive, resetFilter } = useActiveFilter();
 
-const { filteredList, handleUpdateOrders } = useFilteredList(selfCare?.value);
+const { filteredList, handleUpdateOrders } = useFilteredList(selfCare);
 
+const handleResetActiveFilter = () => {
+	resetFilter();
+};
 </script>
 
 <template>
 	<div class="w-full h-full flex flex-col justify-center items-start">
 		<div class="flex items-center gap-4">
-			<LayoutFilterReset :data="selfCare ?? []" :filterName="'Self care'" @updateOrders="handleUpdateOrders" />
+			<LayoutFilterReset :data="selfCare ?? []" :filterName="'Self care'" @updateOrders="handleUpdateOrders"
+				@resetActiveFilter="handleResetActiveFilter" />
 			<LayoutFilterByType v-for="filter in selfCareFilter" :key="filter.filterBy" :data="selfCare ?? []"
 				:filterBy="filter.filterBy" :filterName="filter.filterName" :filterType="'selfCareType'"
 				:isActive="isFilterActive(filter.filterBy)" @updateOrders="handleUpdateOrders"
@@ -32,4 +36,3 @@ const { filteredList, handleUpdateOrders } = useFilteredList(selfCare?.value);
 		</section>
 	</div>
 </template>
-

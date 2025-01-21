@@ -3,12 +3,12 @@ import { ref, watch } from "vue";
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetDiffusers } from "~/composables/useGetDiffusers";
 import { diffuserFilter } from "@/components/layout/filter/filters";
-import { useActiveFilter } from "@/composables/useActiveFilter"
+import { useActiveFilter } from "~/composables/useActiveFilter"
 import { useFilteredList } from "@/composables/useFilteredList"
 
 const { activeFilter,
 	setActiveFilter,
-	isFilterActive, } = useActiveFilter();
+	isFilterActive,resetFilter } = useActiveFilter();
 
 const {
 	data: diffusers,
@@ -16,13 +16,18 @@ const {
 	isError: isErrorRandom,
 } = useGetDiffusers();
 
-const { filteredList, handleUpdateOrders } = useFilteredList(diffusers?.value);
+const { filteredList, handleUpdateOrders } = useFilteredList(diffusers);
+
+const handleResetActiveFilter = () => {
+	resetFilter();
+};
 </script>
 
 <template>
 	<div class="w-full h-full flex flex-col justify-center items-start">
 		<div class="flex items-center gap-4">
-			<LayoutFilterReset :data="diffusers ?? []" :filterName="'Diffusers'" @updateOrders="handleUpdateOrders" />
+			<LayoutFilterReset :data="diffusers ?? []" :filterName="'Self care'" @updateOrders="handleUpdateOrders"
+			@resetActiveFilter="handleResetActiveFilter" />
 			<LayoutFilterByType v-for="filter in diffuserFilter" :key="filter.filterBy" :data="diffusers ?? []"
 				:filterBy="filter.filterBy" :filterName="filter.filterName" :filterType="'diffusersType'"
 				:isActive="isFilterActive(filter.filterBy)" @updateOrders="handleUpdateOrders"
