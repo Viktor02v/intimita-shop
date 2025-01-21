@@ -2,12 +2,7 @@
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetCandles } from "~/composables/useGetCandles";
 import { candleFilters } from "@/components/layout/filter/filters";
-import { useActiveFilter } from "~/composables/useActiveFilter"
-import { useFilteredList } from "@/composables/useFilteredList"
-
-const { activeFilter,
-	setActiveFilter,
-	isFilterActive, resetFilter } = useActiveFilter();
+import { useFilter } from '~/composables/useFilter';
 
 const {
 	data: candles,
@@ -15,17 +10,22 @@ const {
 	isError: isErrorCandles,
 } = useGetCandles();
 
-const { filteredList, handleUpdateOrders } = useFilteredList(candles);
-
-const handleResetActiveFilter = () => {
-	resetFilter();
-};
+const {
+	filteredList,
+	handleUpdateOrders,
+	activeFilter,
+	setActiveFilter,
+	isFilterActive,
+	handleResetActiveFilter,
+	filters,
+	filterName
+} = useFilter(candles, candleFilters, 'Candles');
 </script>
 
 <template>
 	<div class="w-full h-full flex flex-col justify-center items-start">
 		<div class="flex items-center gap-4">
-			<LayoutFilterReset :data="candles ?? []" :filterName="'Self care'" @updateOrders="handleUpdateOrders"
+			<LayoutFilterReset :data="candles ?? []" :filterName="'Candles'" @updateOrders="handleUpdateOrders"
 				@resetActiveFilter="handleResetActiveFilter" />
 			<LayoutFilterByType v-for="filter in candleFilters" :key="filter.filterBy" :data="candles ?? []"
 				:filterType="'candleType'" :filterBy="filter.filterBy" :filterName="filter.filterName"

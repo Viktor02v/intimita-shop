@@ -2,18 +2,20 @@
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetSelfCare } from "~/composables/useGetSelfCare";
 import { selfCareFilter } from "@/components/layout/filter/filters";
-import { useActiveFilter } from "~/composables/useActiveFilter"
-import { useFilteredList } from "@/composables/useFilteredList"
+import { useFilter } from '~/composables/useFilter';
 
 const { data: selfCare, isPending: isPendingRandom, isError: isErrorRandom } = useGetSelfCare();
 
-const { activeFilter, setActiveFilter, isFilterActive, resetFilter } = useActiveFilter();
-
-const { filteredList, handleUpdateOrders } = useFilteredList(selfCare);
-
-const handleResetActiveFilter = () => {
-	resetFilter();
-};
+const {
+	filteredList,
+	handleUpdateOrders,
+	activeFilter,
+	setActiveFilter,
+	isFilterActive,
+	handleResetActiveFilter,
+	filters,
+	filterName
+} = useFilter(selfCare, selfCareFilter, 'Self care');
 </script>
 
 <template>
