@@ -17,5 +17,5 @@ export const BLOGS: Blog[]  = [
 		imgBackup:blog?.title[0]|| null,
 		title:blog?.title[0] || null,
 		content:blog?.description[0] || null,
-	},
+	}
 ];

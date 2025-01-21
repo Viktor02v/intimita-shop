@@ -31,10 +31,10 @@ const props = defineProps({
 		: '-translate-y-[70vh] duration-700 opacity-0 absolute top-0 left-0 w-full h-full z-0'
 		" v-if="items && items?.length > 0">
 
-		<div class="w-full h-full bg-black">
+		<div class="w-full h-full bg-white">
 
 			<div class="w-full text-center">
-				<h1 class="text-3xl font-light text-white pb-8">Order</h1>
+				<h1 class="text-3xl font-light text-black pb-8">Order</h1>
 			</div>
 
 			<LayoutOrderForm />

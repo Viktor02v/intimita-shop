@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
 import { ARROW_DATA } from "../arrow/arrow.data";
 import { useGetDiffusers } from "~/composables/useGetDiffusers";
+import { diffuserFilter } from "@/components/layout/filter/filters";
+import { useFilter } from '~/composables/useFilter';
 
 const {
 	data: diffusers,
@@ -9,37 +10,29 @@ const {
 	isError: isErrorRandom,
 } = useGetDiffusers();
 
-const filteredList = ref<any>([]);
-console.log(diffusers);
-
-watch(
-	() => diffusers?.value,
-	(newData) => {
-		if (newData) {
-			filteredList.value = [...newData];
-		}
-	},
-	{ immediate: true }
-);
-
-const handleUpdateOrders = (updatedOrders: any) => {
-	console.log("Updated orders in parent:", updatedOrders);
-	filteredList.value = updatedOrders; 
-	console.log("Filtered orders in parent:", updatedOrders.value);
-};
+const {
+	filteredList,
+	handleUpdateOrders,
+	activeFilter,
+	setActiveFilter,
+	isFilterActive,
+	handleResetActiveFilter,
+	filters,
+	filterName
+} = useFilter(diffusers, diffuserFilter, 'Diffusers');
 </script>
 
 <template>
 	<div class="w-full h-full flex flex-col justify-center items-start">
 		<div class="flex items-center gap-4">
-			<LayoutFilterReset :data="diffusers ?? []" :filterName="'Diffusers'" @updateOrders="handleUpdateOrders" />
-			<LayoutFilterByType :data="diffusers ?? []" :filterBy="'aroma-diffusers'" :filterName="'Aroma diffusers'"
-				:filterType="'diffusersType'" @updateOrders="handleUpdateOrders" />
-			<LayoutFilterByType :data="diffusers ?? []" :filterBy="'dry-diffusers'" :filterName="'Dry diffusers'"
-				:filterType="'diffusersType'" @updateOrders="handleUpdateOrders" />
-			<LayoutFilterByType :data="diffusers ?? []" :filterBy="'interior-diffusers'"
-				:filterName="'Interior diffusers'" :filterType="'diffusersType'" @updateOrders="handleUpdateOrders" />
+			<LayoutFilterReset :data="diffusers ?? []" :filterName="'Diffusers'" @updateOrders="handleUpdateOrders"
+			@resetActiveFilter="handleResetActiveFilter" />
+			<LayoutFilterByType v-for="filter in diffuserFilter" :key="filter.filterBy" :data="diffusers ?? []"
+				:filterBy="filter.filterBy" :filterName="filter.filterName" :filterType="'diffusersType'"
+				:isActive="isFilterActive(filter.filterBy)" @updateOrders="handleUpdateOrders"
+				@setActiveFilter="setActiveFilter" />
 		</div>
+
 		<section>
 			<div class="w-full h-full">
 				<LayoutList :items="filteredList" />
@@ -48,9 +41,7 @@ const handleUpdateOrders = (updatedOrders: any) => {
 				:title="ARROW_DATA[0].title" :icon="ARROW_DATA[0].icon" :link="ARROW_DATA[0].link"
 				:size="ARROW_DATA[0].size" />
 		</section>
+
 	</div>
 </template>
 
-<style scoped>
-
-</style>

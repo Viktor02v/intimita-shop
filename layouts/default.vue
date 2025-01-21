@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+
 import { useIsLoadingStore } from '@/store/auth.store';
 import { useSidebarStore } from "@/store/sidebar.store";
 import { account } from "@/lib/appwrite"
 
 const sidebarStore = useSidebarStore();
-const onOpacity = ref(false);
 
 const isLoadingStore = useIsLoadingStore();
 onMounted(async () => {

@@ -4,7 +4,6 @@ import { DB } from "~/lib/appwrite";
 import { DB_ID, COLLECTION_CART } from "~/app.constants";
 import type { Product } from "~/types/product.type";
 import { useSidebarStore } from "@/store/sidebar.store";
-import { set } from "@vueuse/core";
 
 const cartMap = reactive<Record<string, boolean>>({});
 

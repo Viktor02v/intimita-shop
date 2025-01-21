@@ -15,7 +15,7 @@ export const COLLAGE_AROMADIFFUSERS_DATA: COLLAGE_DATA[] = [
     subtitle: "view more",
     icon: "prime:arrow-up-right",
     video_url: "../media/aroma- diffusers.mp4",
-    url: "/aromadiffusers",
+    url: "/diffusers",
   },
 ];
 export const COLLAGE_CRAFT_CANDLES_DATA: COLLAGE_DATA[] = [
@@ -24,7 +24,7 @@ export const COLLAGE_CRAFT_CANDLES_DATA: COLLAGE_DATA[] = [
     subtitle: "view more",
     icon: "prime:arrow-up-right",
     video_url: "../media/candles.mp4",
-    url: "/craft-candles",
+    url: "/candles",
   },
 ];
 export const COLLAGE_SELF_CARE_DATA: COLLAGE_DATA[] = [
@@ -42,7 +42,7 @@ export const COLLAGE_PERFUMED_CANDLES_DATA: COLLAGE_DATA[] = [
     subtitle: "view more",
     icon: "prime:arrow-up-right",
     video_url: "../media/perfumed-candles.mp4",
-    url: "/pefumed-candles",
+    url: "/candles",
   },
 ];
 
