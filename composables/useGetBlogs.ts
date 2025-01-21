@@ -5,7 +5,7 @@ import { DB } from "@/lib/appwrite";
 
 export function useGetBlogs() {
 return useQuery({
-    queryKey: ["blogs"], 
+    queryKey: ["blogs"],
    queryFn: async () => {
       try {
       const data = await DB.listDocuments(DB_ID, COLLECTION_BLOGS);

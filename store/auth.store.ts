@@ -75,15 +75,17 @@ actions: {
 });
 
 // Loading State Store
-export const useIsLoadingStore = defineStore("isLoading", {
-state: () => ({
-   isLoading: true,
-}),
+export const useIsLoadingStore = defineStore("isLoadingStore", {
+	state: () => {
+		const isLoading = ref<boolean>(true);
+		return {
+			isLoading
+		};
+	},
 actions: {
    set(data: boolean) {
       this.$patch({ isLoading: data });
    },
-
 },
 });
 

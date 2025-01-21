@@ -23,6 +23,7 @@ interface OrderData {
 const cartMap = reactive<Record<string, boolean>>({});
 
 export function useMakeAnOrder(orderData: OrderData) {
+	
   // Reactive wrapper for the passed refs
 const reactiveOrderData = reactive(orderData);
 

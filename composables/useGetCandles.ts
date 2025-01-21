@@ -23,4 +23,5 @@ return useQuery<Product[]>({
     staleTime: 1000 * 60 * 5, 
    retry: 2,
 });
+
 }

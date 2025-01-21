@@ -15,7 +15,7 @@ export const BLOG_HOW_CHOOSE_DATA: COLLAGE_DATA[] = [
     subtitle: "view more",
     icon: "prime:arrow-up-right",
     foto_url: "../blog/black-candle.png",
-    url: "/aromadiffusers",
+    url: "/blogs",
   },
 ];
 export const BLOG_AROMATHERAPY_DATA: COLLAGE_DATA[] = [
@@ -25,7 +25,7 @@ export const BLOG_AROMATHERAPY_DATA: COLLAGE_DATA[] = [
     icon: "prime:arrow-up-right",
     foto_url: "../blog/dry-dyfusor-caramel-hug.png",
 
-    url: "/craft-candles",
+    url: "/blogs",
   },
 ];
 export const BLOG_COZINESS_DATA: COLLAGE_DATA[] = [
@@ -34,7 +34,7 @@ export const BLOG_COZINESS_DATA: COLLAGE_DATA[] = [
     subtitle: "view more",
     icon: "prime:arrow-up-right",
     foto_url: "../blog/white-candle.png",
-    url: "/self-care",
+    url: "/blogs",
   },
 ];
 export const BLOG_BENEFITS_DATA: COLLAGE_DATA[] = [
@@ -44,7 +44,7 @@ export const BLOG_BENEFITS_DATA: COLLAGE_DATA[] = [
     icon: "prime:arrow-up-right",
 
     foto_url: "../blog/body-cream-sugared.png",
-    url: "/pefumed-candles",
+    url: "/blogs",
   },
 ];
 

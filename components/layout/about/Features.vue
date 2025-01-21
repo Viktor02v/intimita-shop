@@ -14,8 +14,10 @@ defineProps<{
 			:secondary-content="data[0].secondary_content" />
 
 		<!-- Body -->
-		 <LayoutAboutFeaturesBody :img="data[0].foto_url" :img-secondary="data[0].foto_secondary"/>
+		<LayoutAboutFeaturesBody :img="data[0].foto_url" :img-secondary="data[0].foto_secondary"/>
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
