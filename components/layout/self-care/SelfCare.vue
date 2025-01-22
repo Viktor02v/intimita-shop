@@ -20,21 +20,18 @@ const {
 
 <template>
 	<div class="w-full h-full flex flex-col justify-center items-start">
-		<div class="flex items-center gap-4">
-			<LayoutFilterReset :data="selfCare ?? []" :filterName="'Self care'" @updateOrders="handleUpdateOrders"
-				@resetActiveFilter="handleResetActiveFilter" />
-			<LayoutFilterByType v-for="filter in selfCareFilter" :key="filter.filterBy" :data="selfCare ?? []"
-				:filterBy="filter.filterBy" :filterName="filter.filterName" :filterType="'selfCareType'"
-				:isActive="isFilterActive(filter.filterBy)" @updateOrders="handleUpdateOrders"
-				@setActiveFilter="setActiveFilter" />
-		</div>
-		<section>
+		<LayoutFilterButtons :data="selfCare" :filter-name="'Self care'" :filter-type="'selfCareType'"
+			:filter-data="selfCareFilter" :handle-update-orders="handleUpdateOrders"
+			:handle-reset-active-filter="handleResetActiveFilter" :is-filter-active="isFilterActive"
+			:set-active-filter="setActiveFilter" />
+
+		<div>
 			<div class="w-full h-full">
 				<LayoutList :items="filteredList" />
 			</div>
 			<LayoutArrowOnChange class="hover:cursor-pointer hover:translate-x-2.5 transition-all duration-700 py-28"
 				:title="ARROW_DATA[0].title" :icon="ARROW_DATA[0].icon" :link="ARROW_DATA[0].link"
 				:size="ARROW_DATA[0].size" />
-		</section>
+		</div>
 	</div>
 </template>
