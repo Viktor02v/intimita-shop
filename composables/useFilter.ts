@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+
 import { useActiveFilter } from '~/composables/useActiveFilter';
 import { useFilteredList } from '~/composables/useFilteredList';
 
