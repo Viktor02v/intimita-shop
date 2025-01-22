@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ARROW_DATA } from "../arrow/arrow.data";
-import { useGetSelfCare } from "~/composables/useGetSelfCare";
+import { useGetProducts } from "~/composables/useGetProducts";
 import { selfCareFilter } from "@/components/layout/filter/filters";
 import { useFilter } from '~/composables/useFilter';
 
-const { data: selfCare, isPending: isPendingRandom, isError: isErrorRandom } = useGetSelfCare();
+const { data: selfCare, isPending: isPending, isError: isError } = useGetProducts("self-care");
 
 const {
 	filteredList,

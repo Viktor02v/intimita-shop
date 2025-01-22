@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ARROW_DATA } from "../arrow/arrow.data";
-import { useGetDiffusers } from "~/composables/useGetDiffusers";
+import { useGetProducts } from "~/composables/useGetProducts";
 import { diffuserFilter } from "@/components/layout/filter/filters";
 import { useFilter } from '~/composables/useFilter';
 
 const {
 	data: diffusers,
-	isPending: isPendingRandom,
-	isError: isErrorRandom,
-} = useGetDiffusers();
+	isPending: isPending,
+	isError: isError,
+} = useGetProducts("aroma-diffuser");
 
 const {
 	filteredList,
@@ -26,7 +26,7 @@ const {
 	<div class="w-full h-full flex flex-col justify-center items-start">
 		<div class="flex items-center gap-4">
 			<LayoutFilterReset :data="diffusers ?? []" :filterName="'Diffusers'" @updateOrders="handleUpdateOrders"
-			@resetActiveFilter="handleResetActiveFilter" />
+				@resetActiveFilter="handleResetActiveFilter" />
 			<LayoutFilterByType v-for="filter in diffuserFilter" :key="filter.filterBy" :data="diffusers ?? []"
 				:filterBy="filter.filterBy" :filterName="filter.filterName" :filterType="'diffusersType'"
 				:isActive="isFilterActive(filter.filterBy)" @updateOrders="handleUpdateOrders"
@@ -44,4 +44,3 @@ const {
 
 	</div>
 </template>
-

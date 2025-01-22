@@ -3,9 +3,9 @@ import { DB_ID, COLLECTION_ITEMS } from "@/app.constants";
 import { DB } from "@/lib/appwrite";
 import type { Product } from "@/types/product.type";
 
-export function useGetDiffusers() {
+export function useGetProducts(productType: string) {
 return useQuery<Product[]>({
-    queryKey: ["diffusers"], 
+   queryKey: ["products", productType],
    queryFn: async (): Promise<Product[]> => {
       try {
       const data = await DB.listDocuments(DB_ID, COLLECTION_ITEMS);
@@ -14,15 +14,16 @@ return useQuery<Product[]>({
          throw new Error("Invalid data format");
       }
 
-      return data.documents.filter((product: Product) => product.type === "aroma-diffuser");
+        // Filter the data by the provided product type
+      return data.documents.filter(
+         (product: Product) => product.type === productType
+      );
       } catch (error) {
-      console.error("Error fetching Diffusers:", error);
-      throw new Error("Unable to fetch Diffusers");
+      console.error(`Error fetching ${productType}:`, error);
+      throw new Error(`Unable to fetch ${productType}`);
       }
    },
     staleTime: 1000 * 60 * 5, 
-   retry: 2,
+   retry: 2, 
 });
 }
-
-

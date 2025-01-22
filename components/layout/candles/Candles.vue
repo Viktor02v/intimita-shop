@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ARROW_DATA } from "../arrow/arrow.data";
-import { useGetCandles } from "~/composables/useGetCandles";
+import { useGetProducts } from "~/composables/useGetProducts";
 import { candleFilters } from "@/components/layout/filter/filters";
 import { useFilter } from '~/composables/useFilter';
 
@@ -8,7 +8,7 @@ const {
 	data: candles,
 	isPending: isPendingCandles,
 	isError: isErrorCandles,
-} = useGetCandles();
+} = useGetProducts("candle");
 
 const {
 	filteredList,
