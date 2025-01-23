@@ -66,4 +66,6 @@ const closeSidebarIfOpen = () => {
 		<LayoutFooter />
 	</section>
 </template>
-<style scoped></style>
+<style scoped>
+
+</style>
