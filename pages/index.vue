@@ -7,28 +7,28 @@ const { data: items } = useGetItemsOnSale();
 </script>
 
 <template>
-	<div class="w-[100vw]">
-		<!-- Slider -->
-		<LazyLayoutSlider />
+  <div class="w-[100vw]">
+    <!-- Slider -->
+    <LazyLayoutSlider />
 
-		<!-- Often buy list -->
-		<div class="my-[70px] w-full px-[135px]">
-			<LazyTItleItem title="People often buy" />
-			<LazyLayoutList :items="items?.slice(4, 8)" />
-		</div>
+    <!-- Often buy list -->
+    <div class="my-[70px] w-full md:px-[135px]">
+      <LazyTItleItem title="People often buy" />
+      <LazyLayoutList :items="items?.slice(4, 8)" />
+    </div>
 
-		<!-- Video Section -->
-		<LazyLayoutVideoBlogSectionCollage :title="TITLES_COLLAGE_DATA[0].title" />
+    <!-- Video Section -->
+    <LazyLayoutVideoBlogSectionCollage :title="TITLES_COLLAGE_DATA[0].title" />
 
-		<!-- Accordion Questions Section -->
-		<LazyLayoutAccordionComponent />
+    <!-- Accordion Questions Section -->
+    <LazyLayoutAccordionComponent />
 
-		<!-- Blog Section -->
-		<LazyLayoutVideoBlogSectionBlog :title="TITLES_BLOG_DATA[0].title" />
+    <!-- Blog Section -->
+    <LazyLayoutVideoBlogSectionBlog :title="TITLES_BLOG_DATA[0].title" />
 
-		<!-- Subscription -->
-		<LazyLayoutSubscription />
-	</div>
+    <!-- Subscription -->
+    <LazyLayoutSubscription />
+  </div>
 </template>
 
 <style scoped></style>
