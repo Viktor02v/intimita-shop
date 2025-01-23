@@ -58,8 +58,8 @@ const closeSidebarIfOpen = () => {
 <template>
 	<LayoutLoader v-if="isLoadingStore.isLoading" />
 	<section v-else class="relative w-full h-[100vh]">
-		<LayoutHeader />
-		<LayoutSidebar />
+		<!-- <LayoutHeader /> -->
+		<!-- <LayoutSidebar /> -->
 		<div class="w-full mt-[120px]" :class="calculateOpacity" @click="closeSidebarIfOpen">
 			<slot />
 		</div>
