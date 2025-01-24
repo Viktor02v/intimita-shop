@@ -6,6 +6,7 @@ export const useSidebarStore = defineStore("sidebar", {
     isFavoritesOpen: false,
     isLoginOpen: false,
     isOrderOpen: false,
+    isPhoneOpen: false,
   }),
   actions: {
     toggleSidebarCatalog() {
@@ -25,6 +26,9 @@ export const useSidebarStore = defineStore("sidebar", {
     },
     toggleOrderOpen() {
       this.isOrderOpen = !this.isOrderOpen;
+    },
+    togglePhoneOpen() {
+      this.isPhoneOpen = !this.isPhoneOpen;
     },
   },
 });

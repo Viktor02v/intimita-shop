@@ -41,7 +41,7 @@ onUnmounted(() => {
     <div
       v-for="item in SIDEBAR_TITLES"
       :key="item.name"
-      class="fixed top-[120px] left-0 h-[519.5px] w-[34vw] bg-white py-4 z-30"
+      class="fixed top-[24vh] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] bg-white py-4 z-50"
       :class="
         sidebarStore.isSidebarOpenCatalog
           ? 'translate-x-0 duration-1000 opacity-100'
@@ -84,7 +84,7 @@ onUnmounted(() => {
     <div
       v-for="item in SIDEBAR_TITLES"
       :key="item.name"
-      class="fixed top-[120px] left-0 h-[519.5px] w-[34vw] bg-white py-6 flex flex-col justify-start items-start z-30"
+      class="fixed top-[24vh] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] bg-white py-6 flex flex-col justify-start items-start z-50"
       :class="
         sidebarStore.isSidebarOpenMore
           ? 'translate-x-0 duration-1000 opacity-100'
@@ -104,10 +104,10 @@ onUnmounted(() => {
     </div>
 
     <!-- Cart -->
-    <LayoutCart />
+    <LayoutCart class="md:h-[519.5px] h-full w-[60vw] md:w-[34vw]" />
     <!-- Favorites -->
-    <LayoutFavorites />
-    <LayoutLogin />
+    <LayoutFavorites class="md:h-[519.5px] h-full w-[60vw] md:w-[34vw]" />
+    <LayoutLogin class="md:h-[519.5px] h-full w-[60vw] md:w-[34vw]" />
   </div>
 </template>
 

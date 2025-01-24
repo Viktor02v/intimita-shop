@@ -22,38 +22,34 @@ interface OrderData {
 
 const cartMap = reactive<Record<string, boolean>>({});
 
-export function useMakeAnOrder(orderData: OrderData) {
-	
+export function useMakeAnOrder() {
   // Reactive wrapper for the passed refs
-const reactiveOrderData = reactive(orderData);
 
-   const initializeCartMap = async () => {
-		try {
-		const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
-		cartItems.documents.forEach((item: Product) => {
-			 cartMap[item.$id] = true; // Set the items as present in the cart
-		});
-		} catch (error) {
-		console.error("Error initializing cart map:", error);
-		}
-	};
-
-
-const queryClient = useQueryClient();
-
-const makeAnOrder = useMutation({
-   mutationKey: ["create-order"],
-   mutationFn: async () => {
-      try {
+  const initializeCartMap = async () => {
+    try {
       const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
+      cartItems.documents.forEach((item: Product) => {
+        cartMap[item.$id] = true; // Set the items as present in the cart
+      });
+    } catch (error) {
+      console.error("Error initializing cart map:", error);
+    }
+  };
 
-      if (!cartItems.documents.length) {
-         return {
+  const queryClient = useQueryClient();
+
+  const makeAnOrder = useMutation({
+    mutationKey: ["create-order"],
+    mutationFn: async () => {
+      try {
+        const cartItems = await DB.listDocuments(DB_ID, COLLECTION_CART);
+
+        if (!cartItems.documents.length) {
+          return {
             success: false,
             message: "Your cart is empty. Please add items to proceed.",
-
-         };
-      }
+          };
+        }
 
         // Create orders for each cart item
         await Promise.all(
@@ -69,12 +65,12 @@ const makeAnOrder = useMutation({
               price,
               description,
               foto_url,
-              country: reactiveOrderData.countryRef,
-              city: reactiveOrderData.cityRef,
-              firstName: reactiveOrderData.firstNameRef,
-              lastName: reactiveOrderData.lastNameRef,
-              tel: reactiveOrderData.telRef,
-              payment: reactiveOrderData.paymentRef,
+              country: orderStore.countryRef,
+              city: orderStore.cityRef,
+              firstName: orderStore.firstNameRef,
+              lastName: orderStore.lastNameRef,
+              tel: orderStore.telRef,
+              payment: orderStore.paymentRef,
             });
           })
         );
@@ -83,11 +79,10 @@ const makeAnOrder = useMutation({
         await Promise.all(
           cartItems.documents.map((product) =>
             DB.deleteDocument(DB_ID, COLLECTION_CART, product.$id)
-          ),
+          )
         );
 
         return { success: true };
-		
       } catch (error) {
         console.error("Error creating order:", error);
         throw new Error("Failed to create the order. Please try again.");
@@ -95,7 +90,7 @@ const makeAnOrder = useMutation({
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["cart-products"]);
-		initializeCartMap();
+      initializeCartMap();
       sidebarStore.toggleOrderOpen();
       orderStore.isOrderComplete = true;
     },
@@ -104,7 +99,7 @@ const makeAnOrder = useMutation({
     },
     onSettled: () => {
       setTimeout(() => {
-			orderStore.isOrderComplete = false;
+        orderStore.isOrderComplete = false;
       }, 2000);
     },
   });

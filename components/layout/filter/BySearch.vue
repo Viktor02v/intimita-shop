@@ -109,13 +109,13 @@ const closeSearch = () => {
       <!-- Search Results -->
       <div
         v-if="onSearchStore.isSearchOpen && searchData.length > 0"
-        class="bg-black w-full mt-4 absolute top-10 max-h-[30vh] overflow-y-auto scrollbar-none rounded-lg"
+        class="w-full mt-4 absolute top-10 max-h-[30vh] overflow-y-auto scrollbar-none rounded-lg"
       >
         <NuxtLink
           :to="`/products/${item.$id}`"
           v-for="item in searchData"
           :key="item.$id"
-          class="flex gap-4 cursor-pointer p-2 border-b border-gray-200 hover:text-[#FFD095] px-4"
+          class="flex gap-4 cursor-pointer p-2 border-b border-gray-200 hover:text-[#FFD095] px-4 bg-black z-50"
         >
           <img :src="item.foto_url" class="w-8 h-8 object-contain" alt="" />
           {{ item.name }}
@@ -125,6 +125,4 @@ const closeSearch = () => {
   </section>
 </template>
 
-<style scoped>
-/* Add your custom styles here */
-</style>
+<style scoped></style>

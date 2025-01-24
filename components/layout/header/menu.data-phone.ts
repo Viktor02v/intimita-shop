@@ -3,7 +3,7 @@ export interface MenuData {
   url?: string;
 }
 
-export const MENU_DATA: MenuData[] = [
+export const MENU_DATA_PHONE: MenuData[] = [
   {
     name: "Catalog",
   },
@@ -13,10 +13,6 @@ export const MENU_DATA: MenuData[] = [
     url: "/about",
   },
 
-  {
-    name: "Intimita Shop",
-    url: "/",
-  },
   {
     name: "Blog",
     url: "/blogs",
