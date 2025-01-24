@@ -12,7 +12,7 @@ const { data: items } = useGetItemsOnSale();
     <LazyLayoutSlider />
 
     <!-- Often buy list -->
-    <div class="my-[70px] w-full px-[135px]">
+    <div class="my-[70px] w-full md:px-[135px]">
       <LazyTItleItem title="People often buy" />
       <LazyLayoutList :items="items?.slice(4, 8)" />
     </div>

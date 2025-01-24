@@ -10,26 +10,29 @@ import {
 </script>
 
 <template>
-	<div class="h-[363px] bg-black w-[100vw] flex flex-col items-center justify-end px-20 pb-[71px]">
+	<div class="h-[740px] md:h-[363px] bg-black w-full flex flex-col  justify-between px-6 py-[15px] sm:px-10 md:px-20 pb-[50px] md:pb-[71px]">
+
 		<h1
-			class="w-full h-full flex items-start justify-center text-white text-[40px] hover:text-[#DCAF75] transition-all duration-500">
+			class="w-full text-center text-white text-[30px] md:text-[40px] hover:text-[#DCAF75] transition-all duration-500">
 			{{ MENU_DATA[2].name }}
 		</h1>
-		<div class="w-full h-full flex justify-around items-start text-white">
-			<div class="w-full flex justify-between items-baseline text-white">
-				<LayoutFooterColumn :type="FOOTER_CATALOG_DATA" :title="FOOTER_TITLES[0]" />
-
-				<LayoutFooterColumn :type="FOOTER_MENU_DATA" :title="FOOTER_TITLES[1]" />
-
-				<LayoutFooterColumn :type="FOOTER_CONTACTS_DATA" :title="FOOTER_TITLES[2]" />
-			</div>
-			<div class="w-full h-full flex justify-end items-end gap-[63px] text-white">
-				<ul v-for="item in FOOTER_PAYMENT_DATA" :key="item.name" class="flex flex-col">
-					<img :src="item.img" />
-				</ul>
-			</div>
+		
+		<div class="md:w-[596px] flex flex-col md:flex-row md:justify-start items-start text-white mt-6 md:mt-[58px] flex-grow gap-6">
+			<LayoutFooterColumn :type="FOOTER_CATALOG_DATA" :title="FOOTER_TITLES[0]" />
+			<LayoutFooterColumn :type="FOOTER_MENU_DATA" :title="FOOTER_TITLES[1]" />
+			<LayoutFooterColumn :type="FOOTER_CONTACTS_DATA" :title="FOOTER_TITLES[2]" />
+		</div>
+		
+		<div class="w-full flex justify-center md:justify-end items-center gap-10 md:gap-[63px] text-white mt-0">
+			<ul 
+				v-for="item in FOOTER_PAYMENT_DATA" 
+				:key="item.name" 
+				class="flex flex-row md:flex-col justify-center items-center">
+				<img :src="item.img" class="h-6 md:h-auto" />
+			</ul>
 		</div>
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
