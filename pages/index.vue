@@ -2,6 +2,9 @@
 import { useGetItemsOnSale } from "~/composables/useGetItemsOnSale";
 import { TITLES_COLLAGE_DATA } from "../components/layout/video-blog-section/collage.data";
 import { TITLES_BLOG_DATA } from "../components/layout/video-blog-section/blog.data";
+import { useScreenSize } from "@/composables/useWindowSize";
+
+const { isDesktop, isTablet, isMobile } = useScreenSize();
 
 const { data: items } = useGetItemsOnSale();
 </script>
@@ -14,7 +17,9 @@ const { data: items } = useGetItemsOnSale();
     <!-- Often buy list -->
     <div class="my-[70px] w-full md:px-[135px]">
       <LazyTItleItem title="People often buy" />
-      <LazyLayoutList :items="items?.slice(4, 8)" />
+      <LazyLayoutList
+        :items="isMobile ? items?.slice(0, 2) : items?.slice(4, 8)"
+      />
     </div>
 
     <!-- Video Section -->

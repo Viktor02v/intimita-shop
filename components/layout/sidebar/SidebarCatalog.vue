@@ -19,7 +19,7 @@ const props = defineProps({
 const sidebarStore = useSidebarStore();
 </script>
 <template>
-  <div class="w-[35vw] flex justify-center items-center">
+  <div class="w-[60vw] md:w-[35vw] flex justify-start items-center z-50 px-2">
     <div class="w-3/4 h-full flex flex-col justify-start items-start">
       <NuxtLink
         :to="props.url"

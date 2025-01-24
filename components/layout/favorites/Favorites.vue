@@ -24,7 +24,7 @@ const favoritesClasses = computed(() =>
     aria-labelledby="cart-title"
     :aria-hidden="!sidebarStore.isFavoritesOpen"
     :class="[
-      'fixed top-[120px] right-0 h-[57.7vh] w-[34vw] bg-white py-6 flex flex-col z-50',
+      'fixed top-[24vh] right-0 h-[520px] overflow-hidden w-[60vw] md:w-[34vw] bg-white flex flex-col z-50 py-6',
       favoritesClasses,
     ]"
   >
@@ -41,10 +41,13 @@ const favoritesClasses = computed(() =>
       Loading...
     </div>
 
-		<!-- Error State -->
-		<div v-if="isErrorFavoriteProducts" class="uppercase text-center text-base font-light text-red-500">
-			Error loading Wishlist. Please try again.
-		</div>
+    <!-- Error State -->
+    <div
+      v-if="isErrorFavoriteProducts"
+      class="uppercase text-center text-base font-light text-red-500"
+    >
+      Error loading Wishlist. Please try again.
+    </div>
 
     <!-- Wishlist Items -->
     <div
@@ -63,6 +66,4 @@ const favoritesClasses = computed(() =>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
