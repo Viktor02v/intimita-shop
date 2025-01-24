@@ -1,6 +1,6 @@
 <template>
 	<div class="py-[43px]">
-		<div class="pl-[120px]">
+		<div class="md:pl-[120px]">
 			<TItleItem :title="title" />
 		</div>
 		<LayoutVideoBlogSectionCollageSection />
