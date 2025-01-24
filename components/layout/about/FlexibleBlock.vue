@@ -1,29 +1,31 @@
 <script setup lang="ts">
-import { defineProps } from "vue"
+import { defineProps } from "vue";
 
 defineProps({
-	reverse: {
-		type: Boolean,
-		default: false,
-	},
+  reverse: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <template>
-	<div :class="[
-		'w-full flex items-center',
-		reverse ? 'flex-row-reverse' : 'flex-row',
-	]">
-		<!-- Foto Block -->
-		<div class="w-1/2 h-[100vh]">
-			<slot name="foto-block" />
-		</div>
+  <div
+    :class="[
+      'w-full flex flex-col md:flex-row items-center',
+      reverse ? 'md:flex-row-reverse' : '',
+    ]"
+  >
+    <!-- Foto Block -->
+    <div class="w-full md:w-1/2 h-[50vh] sm:h-[60vh] md:h-[80vh] lg:h-[100vh]">
+      <slot name="foto-block" />
+    </div>
 
-		<!-- Content Block -->
-		<div class="w-1/2">
-			<slot name="content-block" />
-		</div>
-	</div>
+    <!-- Content Block -->
+    <div class="w-full md:w-1/2 py-6 md:py-0">
+      <slot name="content-block" />
+    </div>
+  </div>
 </template>
 
 <style scoped>

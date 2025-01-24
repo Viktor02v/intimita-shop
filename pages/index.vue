@@ -34,4 +34,5 @@ const { data: items } = useGetItemsOnSale();
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
