@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
   title: {
@@ -24,6 +24,7 @@ const props = defineProps({
     required: true,
   },
 });
+
 const isHover = ref(false);
 const isHoverText = ref(false);
 
@@ -34,6 +35,7 @@ const onBrightness = () => {
   return "brightness-75 contrast-100 transition-all ease-in-out duration-500";
 };
 </script>
+
 <template>
   <div
     class="relative group"
@@ -41,20 +43,22 @@ const onBrightness = () => {
     @mouseleave="isHover = false"
   >
     <NuxtLink :to="url" class="w-full h-full">
+      
+      <!-- Text Section -->
       <div
-        class="flex flex-col justify-start items-start gap-2 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4  z-10"
+        class="flex flex-col justify-center items-center gap-2 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4 z-10"
       >
         <div
-          class="font-garamond text-center text-[24px] font-bold hover:text-[#FFD095] transition-all duration-500"
+          class="font-garamond text-center text-[18px] md:text-[24px] font-bold hover:text-[#FFD095] transition-all duration-500"
         >
           {{ props.title }}
         </div>
         <div
-          class="w-full h-full flex items-center justify-center gap-2 text-[14px] hover:text-[#FFD095] transition-all duration-500"
+          class="w-full h-full flex items-center justify-center gap-2 text-[12px] md:text-[14px] hover:text-[#FFD095] transition-all duration-500"
           @mouseover="isHoverText = true"
           @mouseleave="isHoverText = false"
         >
-          <div class="text-[14px]">
+          <div class="text-[12px] md:text-[14px]">
             {{ props.subtitle }}
           </div>
           <Icon
@@ -65,11 +69,14 @@ const onBrightness = () => {
           />
         </div>
       </div>
-      <div class="max-w-[45vw] max-h-[45vh] overflow-hidden">
+      
+      <!-- Full-width Image -->
+      <div class="w-full h-[300px] md:h-[500px] overflow-hidden">
         <img
           :src="props.video_url"
-          class="relative transition-all duration-700"
+          class="w-full h-full object-cover transition-all duration-700"
           :class="onBrightness()"
+          alt="Blog Image"
         />
       </div>
     </NuxtLink>
