@@ -76,8 +76,9 @@ const closeSidebarIfOpen = () => {
 				calculateOpacity,
 			]" @click="closeSidebarIfOpen">
 				<slot />
+				<LayoutFooter />
 			</div>
-			<LayoutFooter />
+			
 		</section>
 	</div>
 </template>
