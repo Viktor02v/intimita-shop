@@ -22,7 +22,7 @@ const { data: randomProducts, isPending: isPendingRandom, isError: isErrorRandom
 				<p v-else-if="isErrorProduct">Error loading product.</p>
 			</div>
 
-			<div class="px-[100px] pb-[70px]">
+			<div class="md:px-[100px] pb-[70px]">
 				<TItleItem title="Similar products"/>
 				<LayoutList v-if="randomProducts" :items="randomProducts" />
 				<p v-else-if="isPendingRandom">Loading...</p>

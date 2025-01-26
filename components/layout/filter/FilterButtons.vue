@@ -33,7 +33,7 @@ defineProps({
 </script>
 
 <template>
-	<div class="flex items-center gap-4">
+	<div class="flex flex-col md:flex-row items-center md:gap-4">
 		<LayoutFilterReset :data="data" :filterName="filterName" @updateOrders="handleUpdateOrders"
 			@resetActiveFilter="handleResetActiveFilter" />
 		<LayoutFilterByType v-for="filter in filterData" :key="filter.filterBy" :data="data" :filterType="filterType"
