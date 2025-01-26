@@ -6,6 +6,9 @@ import { toggleSidebar } from "@/composables/useToggleSidebar";
 import { useSidebarStore } from "@/store/sidebar.store";
 import { useGetAllProducts } from "@/composables/useGetAllProducts";
 import { useSearchStore } from "@/store/search.store";
+import { useCloseSidebarIfOpen } from "~/composables/useCloseSidebarIfOpen";
+
+const { closeSidebarIfOpen } = useCloseSidebarIfOpen();
 
 // Stores
 const onSearchStore = useSearchStore();
@@ -26,16 +29,20 @@ const dra = ref(false);
 
 // Push content to the right
 const pushContentToRight = () => {
-  ard.value =
-    sidebarStore.isCartOpen ||
-    sidebarStore.isFavoritesOpen ||
-    sidebarStore.isLoginOpen;
+  watchEffect(() => {
+    ard.value =
+      sidebarStore.isCartOpen ||
+      sidebarStore.isFavoritesOpen ||
+      sidebarStore.isLoginOpen;
+  });
 };
 
 // Push content to the left
 const pushContentToLeft = () => {
-  dra.value =
-    sidebarStore.isSidebarOpenCatalog || sidebarStore.isSidebarOpenMore;
+  watchEffect(() => {
+    dra.value =
+      sidebarStore.isSidebarOpenCatalog || sidebarStore.isSidebarOpenMore;
+  });
 };
 
 // Combined handler for both directions
@@ -59,14 +66,30 @@ const computedClasses = computed(() => {
 
 <template>
   <Icon
-    @click="sidebarStore.togglePhoneOpen()"
+    @click="sidebarStore.togglePhoneOpen(), closeSidebarIfOpen()"
     :name="sidebarStore.isPhoneOpen ? 'ion:close' : 'ion:menu'"
     :class="
       sidebarStore.isPhoneOpen
-        ? 'fixed top-6 left-4 rotate-90 duration-700 w-10 h-10 text-white z-40 cursor-pointer'
-        : 'fixed top-6 left-4 rotate-180 duration-700 w-10 h-10 text-gray-900 z-40 cursor-pointer'
+        ? 'fixed top-6 left-4 rotate-90 duration-700 w-10 h-10 text-white z-50 cursor-pointer '
+        : 'fixed top-6 left-4 rotate-180 duration-700 w-10 h-10 text-white z-50 cursor-pointer'
     "
   />
+  <div
+    class="w-full h-[100px] bg-black fixed top-0 left-0 z-40 flex justify-center items-center"
+  >
+    <NuxtLink
+      v-if="!sidebarStore.isPhoneOpen"
+      :to="`/`"
+      class="w-full h-full flex items-center justify-center z-40"
+      @click="closeSidebarIfOpen()"
+    >
+      <h1
+        class="font-garamond text-white hover:text-[#FFD095] text-[36px] transition-all ease-out cursor-pointer duration-500"
+      >
+        Intimita Shop
+      </h1>
+    </NuxtLink>
+  </div>
 
   <div
     v-if="sidebarStore.isPhoneOpen"
@@ -92,7 +115,7 @@ const computedClasses = computed(() => {
     <NuxtLink
       :to="`/`"
       class="w-full flex items-start justify-center mt-6 mb-16 z-40"
-      @click="sidebarStore.togglePhoneOpen()"
+      @click="sidebarStore.togglePhoneOpen(), closeSidebarIfOpen()"
     >
       <h1
         class="font-garamond text-white hover:text-[#FFD095] text-[36px] transition-all ease-out cursor-pointer duration-500"
@@ -105,12 +128,12 @@ const computedClasses = computed(() => {
 
     <!-- User Actions -->
     <div
-      class="fixed top-[24vh] w-full flex flex-col items-center justify-center"
+      class="fixed top-[24vh] md:top-[120px] w-full flex flex-col items-center justify-center"
       @click="handleClick"
       :class="computedClasses"
     >
       <div
-        class="flex items-center justify-center gap-[20px] text-[26px] transition-all duration-200 ease-out text-[#989898] pb-6 z-40"
+        class="flex items-center justify-center gap-[20px] text-[26px] transition-all duration-200 ease-out text-[#989898] pb-6 z-50"
       >
         <!-- Profile Icon -->
         <Icon

@@ -21,17 +21,19 @@ const props = defineProps({
   <div
     :class="
       sidebarStore.isOrderOpen
-        ? 'translate-y-0 duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-40'
-        : '-translate-y-[100vh] duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-0'
+        ? 'translate-y-50 duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-50 text-white'
+        : '-translate-y-[100vh] duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-50 text-white'
     "
     v-if="items && items?.length > 0"
   >
-    <div class="w-full h-full bg-black text-white">
+    <div
+      class="w-full h-full bg-black text-white z-50 flex flex-col justify-center items-center"
+    >
       <div class="w-full text-center">
-        <h1 class="text-3xl font-light text-black pb-8">Order</h1>
+        <h1 class="text-3xl font-light text-white md:pb-8 pb-16 z-50">Order</h1>
       </div>
 
-      <LayoutOrderForm />
+      <LayoutOrderForm class="text-white" />
 
       <div class="w-full flex justify-center py-4">
         <UiButton

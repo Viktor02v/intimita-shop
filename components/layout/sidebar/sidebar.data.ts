@@ -22,19 +22,19 @@ export const SIDEBAR_TITLES: SidebarData[] = [
   },
   {
     name: "Promotions and discounts",
-    url: "/Promotions-and-discounts",
+    url: "/promotions-and-discounts",
   },
   {
     name: "Feedbacks",
-    url: "/Feedbacks",
+    url: "/feedbacks",
   },
   {
     name: "Contacts",
-    url: "/Contacts",
+    url: "/contacts",
   },
   {
     name: "Collaboration",
-    url: "/Collaboration",
+    url: "/collaboration",
   },
 ];
 export const SIDEBAR_CANDLES_DATA: SidebarData[] = [
