@@ -7,7 +7,6 @@ defineProps({
     required: true,
   },
 });
-//something
 </script>
 <template>
   <div class="md:w-4/6 w-6/6 max-h-[160px] overflow-auto scrollbar-none">
