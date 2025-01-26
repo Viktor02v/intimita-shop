@@ -24,7 +24,7 @@ const favoritesClasses = computed(() =>
     aria-labelledby="cart-title"
     :aria-hidden="!sidebarStore.isFavoritesOpen"
     :class="[
-      'fixed top-[24vh] right-0 h-[520px] overflow-hidden w-[60vw] md:w-[34vw] bg-white flex flex-col z-50 py-6',
+      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] bg-black text-white flex flex-col z-40 py-6',
       favoritesClasses,
     ]"
   >
@@ -33,35 +33,37 @@ const favoritesClasses = computed(() =>
       Wishlist
     </h1>
 
-    <!-- Loading State -->
-    <div
-      v-if="isPendingFavoriteProducts"
-      class="uppercase text-center text-base font-light"
-    >
-      Loading...
-    </div>
+    <div class="w-full h-[100vh] flex flex-col justify-center items-center">
+      <!-- Loading State -->
+      <div
+        v-if="isPendingFavoriteProducts"
+        class="uppercase text-center text-base font-light"
+      >
+        Loading...
+      </div>
 
-    <!-- Error State -->
-    <div
-      v-if="isErrorFavoriteProducts"
-      class="uppercase text-center text-base font-light text-red-500"
-    >
-      Error loading Wishlist. Please try again.
-    </div>
+      <!-- Error State -->
+      <div
+        v-if="isErrorFavoriteProducts"
+        class="uppercase text-center text-base font-light text-red-500"
+      >
+        Error loading Wishlist. Please try again.
+      </div>
 
-    <!-- Wishlist Items -->
-    <div
-      v-else-if="favoriteProducts && favoriteProducts?.length > 0"
-      class="w-full flex flex-col space-y-[25px]"
-    >
-      <LayoutFavoritesItems :items="favoriteProducts" />
+      <!-- Wishlist Items -->
+      <div
+        v-else-if="favoriteProducts && favoriteProducts?.length > 0"
+        class="w-full flex flex-col space-y-[25px]"
+      >
+        <LayoutFavoritesItems :items="favoriteProducts" />
 
-      <LayoutFavoritesButton />
-    </div>
+        <LayoutFavoritesButton />
+      </div>
 
-    <!-- Empty Wishlist -->
-    <div v-else class="uppercase text-center text-base font-light">
-      Your Wishlist is Empty
+      <!-- Empty Wishlist -->
+      <div v-else class="uppercase text-center text-base font-light">
+        Your Wishlist is Empty
+      </div>
     </div>
   </div>
 </template>

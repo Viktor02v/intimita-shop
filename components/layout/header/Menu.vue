@@ -4,6 +4,9 @@ import { MENU_DATA_PHONE } from "@/components/layout/header/menu.data-phone";
 import { useSidebarStore } from "@/store/sidebar.store";
 import { toggleSidebar } from "@/composables/useToggleSidebar";
 import { useScreenSize } from "@/composables/useWindowSize";
+import { useCloseSidebarIfOpen } from "~/composables/useCloseSidebarIfOpen";
+
+const { closeSidebarIfOpen } = useCloseSidebarIfOpen();
 
 const { isDesktop, isTablet, isMobile } = useScreenSize();
 const sidebarStore = useSidebarStore();
@@ -24,7 +27,7 @@ const closePhoneSidebar = (i: any) => {
         v-for="item in isMobile ? MENU_DATA_PHONE : MENU_DATA"
         :key="item.name"
         class="text-white text-center w-full"
-        @click="closePhoneSidebar(item.name)"
+        @click="closePhoneSidebar(item.name), closeSidebarIfOpen"
       >
         <li
           :class="[

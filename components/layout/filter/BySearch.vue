@@ -2,6 +2,11 @@
 import { set } from "@vueuse/core";
 import { ref, onMounted, watch, watchEffect } from "vue";
 import { useSearchStore } from "~/store/search.store";
+import { useCloseSidebarIfOpen } from "~/composables/useCloseSidebarIfOpen";
+
+const { closeSidebarIfOpen } = useCloseSidebarIfOpen();
+
+const sidebarStore = useSidebarStore();
 
 const onSearchStore = useSearchStore();
 
@@ -116,6 +121,11 @@ const closeSearch = () => {
           v-for="item in searchData"
           :key="item.$id"
           class="flex gap-4 cursor-pointer p-2 border-b border-gray-200 hover:text-[#FFD095] px-4 bg-black z-50"
+          @click="
+            closeSidebarIfOpen,
+              (sidebarStore.isPhoneOpen = false),
+              closeSidebarIfOpen()
+          "
         >
           <img :src="item.foto_url" class="w-8 h-8 object-contain" alt="" />
           {{ item.name }}

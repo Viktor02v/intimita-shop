@@ -3,6 +3,9 @@ import { useIsLoadingStore } from "@/store/auth.store";
 import { useSidebarStore } from "@/store/sidebar.store";
 import { account } from "@/lib/appwrite";
 import { useScreenSize } from "@/composables/useWindowSize";
+import { useCloseSidebarIfOpen } from "~/composables/useCloseSidebarIfOpen";
+
+const { closeSidebarIfOpen } = useCloseSidebarIfOpen();
 
 const { isDesktop, isTablet, isMobile } = useScreenSize();
 
@@ -38,23 +41,6 @@ const calculateOpacity = computed(() => {
 		: "opacity-100";
 });
 
-const closeSidebarIfOpen = () => {
-	if (
-		sidebarStore.isSidebarOpenCatalog ||
-		sidebarStore.isSidebarOpenMore ||
-		sidebarStore.isCartOpen ||
-		sidebarStore.isFavoritesOpen ||
-		sidebarStore.isLoginOpen
-	) {
-		sidebarStore.isSidebarOpenCatalog = false;
-		sidebarStore.isSidebarOpenMore = false;
-		sidebarStore.isCartOpen = false;
-		sidebarStore.isFavoritesOpen = false;
-		sidebarStore.isLoginOpen = false;
-	} else {
-		return;
-	}
-};
 </script>
 
 <template>
