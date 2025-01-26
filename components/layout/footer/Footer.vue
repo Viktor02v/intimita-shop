@@ -10,7 +10,7 @@ import {
 </script>
 
 <template>
-	<div class="h-[740px] md:h-[363px] bg-black w-full flex flex-col  justify-between px-6 py-[15px] sm:px-10 md:px-20 pb-[50px] md:pb-[71px]">
+	<div class="h-[740px] md:h-[363px] absolute z-50 bg-black w-full flex flex-col  justify-between px-6 py-[15px] sm:px-10 md:px-20 pb-[50px] md:pb-[71px]">
 
 		<h1
 			class="w-full text-center text-white text-[30px] md:text-[40px] hover:text-[#DCAF75] transition-all duration-500">

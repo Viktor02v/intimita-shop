@@ -34,11 +34,11 @@ const resetFilter = () => {
 </script>
 
 <template>
-	<section class="w-[90%] flex flex-col justify-end items-end gap-8">
+	<div class="w-[100%] md:w-[90%] flex flex-col justify-center md:justify-end md:items-end md:gap-8">
 		<!-- Toggle Button -->
-		<div class="flex items-center py-8">
-			<buttonn class="text-[36px] cursor-pointer font-garamond min-w-[10vw]" @click="resetFilter">{{ props.filterName
+		<div class="flex justify-center md:justify-normal items-center border-b border-b-2 md:border-none">
+			<buttonn class="text-[30px] md:text-[36px] cursor-pointer font-garamond min-w-[10vw]" @click="resetFilter">{{ props.filterName
 				}}</buttonn>
 		</div>
-	</section>
+	</div>
 </template>

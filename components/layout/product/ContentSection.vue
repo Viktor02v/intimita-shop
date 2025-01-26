@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-	<div class="w-1/2 flex flex-col justify-between min-h-[700px] max-h-[700px] pl-[116px] py-[45px]">
+	<div class="w-1/2 flex flex-col gap-10 md:gap-0 md:justify-between min-h-[700px] max-h-[700px] md:pl-[116px] py-[45px]">
 		<div>
 			<div class="w-full mb-[64px]">
 				<h1 class="text-4xl font-light">{{ item.name }}</h1>
