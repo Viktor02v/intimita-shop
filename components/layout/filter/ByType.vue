@@ -1,35 +1,57 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect, defineEmits, defineProps } from "vue";
+import { ref, watchEffect, defineEmits, defineProps } from "vue";
 import { useSidebarFilter } from "~/composables/useSidebarFilter";
-const { sidebarFilter, filterValues } = useSidebarFilter();
 
+// Destructure values from composable
+const { filterValues } = useSidebarFilter();
+
+// Define emitted events
 const emit = defineEmits(["updateOrders", "setActiveFilter"]);
 
-// Props
+// Define props
 const props = defineProps<{
-  data: any[];
-  filterBy: string;
-  filterName: string;
-  filterType: string;
-  isActive: boolean;
+  data: any[]; // Array of data to filter
+  filterBy: string; // Value to filter by
+  filterName: string; // Display name for the filter
+  filterType: string; // Key in data to filter by
+  isActive: boolean; // Indicates if the filter is active
 }>();
 
-// Filter functions
-const onFilterClick = () => {
-  const filteredOrders = props.data.filter(
-    (item) => item[props.filterType] === props.filterBy
-  );
-  console.log(filterValues.value);
-  emit("updateOrders", filteredOrders);
-  emit("setActiveFilter", props.filterBy); // Notify parent to set active filter
-};
+// Reactive filtered data
+const filteredOrders = ref<any[]>([]);
 
-// Check if the orders are received correctly
+// Watch `filterValues` and `props` to update filteredOrders
+watchEffect(() => {
+  if (!props.data || !props.filterType) {
+    filteredOrders.value = [];
+    return;
+  }
+
+  // Filter data based on `filterValues` or `props.filterBy`
+  filteredOrders.value = props.data.filter(
+    (item) =>
+      item[props.filterType] === (filterValues.value as string) ||
+      item[props.filterType] === props.filterBy
+  );
+
+  // Emit the filtered data
+  emit("updateOrders", filteredOrders.value);
+});
+
+// Handle filter button click
+const onFilterClick = () => {
+  filteredOrders.value = props.data.filter(
+    (item) =>
+      item[props.filterType] === (filterValues.value as string) ||
+      item[props.filterType] === props.filterBy
+  );
+  emit("updateOrders", filteredOrders.value);
+};
 </script>
 
 <template>
   <div
-    class="w-[100%] md:w-[90%] flex flex-col md:justify-end md:items-end md:gap-8"
+    class="w-full md:w-[90%] flex flex-col md:justify-end md:items-end md:gap-8"
   >
     <div
       class="flex flex-col md:flex-row justify-center items-center py-2 md:py-8"
