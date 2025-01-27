@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { defineProps } from "vue";
 import { useSidebarStore } from "@/store/sidebar.store";
 import { useCloseSidebarIfOpen } from "~/composables/useCloseSidebarIfOpen";
+import { useSidebarFilter } from "~/composables/useSidebarFilter";
 
 const { closeSidebarIfOpen } = useCloseSidebarIfOpen();
 
-import { defineProps } from "vue";
-
+const filterValue = ref();
 const sidebarStore = useSidebarStore();
 
 const props = defineProps({
@@ -21,6 +22,12 @@ const props = defineProps({
     type: String,
   },
 });
+
+const { sidebarFilter, filterValues } = useSidebarFilter();
+
+const handleSubmit = (i: any) => {
+  sidebarFilter(i);
+};
 </script>
 <template>
   <div class="w-[60vw] md:w-[35vw] flex justify-start items-center z-50 px-2">
@@ -38,6 +45,7 @@ const props = defineProps({
       </NuxtLink>
       <div v-for="item in props.items" :key="item.name">
         <div
+          @click="handleSubmit((filterValue = item.filterBy))"
           class="text-[12px] 2xl:text-[16px] text-black p-1 hover:text-[#FFD095] hover:translate-x-2 duration-500"
         >
           {{ item.name }}
