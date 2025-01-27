@@ -11,7 +11,7 @@ defineProps({
 
 <template>
   <div
-    class="w-6/6 max-h-[320px] overflow-auto scrollbar-none md:text-black text-white"
+    class="w-5/6 md:w-4/6 max-h-[320px] overflow-auto scrollbar-none md:text-black text-white"
   >
     <div v-for="product in items" :key="product.$id" class="w-full">
       <div class="w-full relative flex items-center gap-[10px] mb-5">

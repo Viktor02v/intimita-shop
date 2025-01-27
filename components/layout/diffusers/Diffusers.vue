@@ -23,21 +23,23 @@ const {
 </script>
 
 <template>
-	<div class="w-full h-full flex flex-col justify-center items-start">
+	<div class="w-full relative h-full flex flex-col justify-center py-20 items-end md:items-center">
 
-		<LayoutFilterButtons :data="diffusers" :filter-name="'Diffusers'" :filter-type="'diffusersType'"
-			:filter-data="diffuserFilter" :handle-update-orders="handleUpdateOrders"
-			:handle-reset-active-filter="handleResetActiveFilter" :is-filter-active="isFilterActive"
-			:set-active-filter="setActiveFilter" />
+		<LayoutMobileFilter>
+			<template #buttons>
+				<LayoutFilterButtons :data="diffusers" :filter-name="'Diffusers'" :filter-type="'diffusersType'"
+					:filter-data="diffuserFilter" :handle-update-orders="handleUpdateOrders"
+					:handle-reset-active-filter="handleResetActiveFilter" :is-filter-active="isFilterActive"
+					:set-active-filter="setActiveFilter" />
+			</template>
+		</LayoutMobileFilter>
 
-		<div>
-			<div class="w-full h-full">
-				<LayoutList :items="filteredList" />
-			</div>
-			<LayoutArrowOnChange class="hover:cursor-pointer hover:translate-x-2.5 transition-all duration-700 py-28"
-				:title="ARROW_DATA[0].title" :icon="ARROW_DATA[0].icon" :link="ARROW_DATA[0].link"
-				:size="ARROW_DATA[0].size" />
+		<div class="w-full h-full flex justify-center">
+			<LayoutList :items="filteredList" />
 		</div>
-
+		
+		<LayoutArrowOnChange class="hover:cursor-pointer hover:translate-x-2.5 transition-all duration-700 py-28"
+			:title="ARROW_DATA[0].title" :icon="ARROW_DATA[0].icon" :link="ARROW_DATA[0].link"
+			:size="ARROW_DATA[0].size" />
 	</div>
 </template>
