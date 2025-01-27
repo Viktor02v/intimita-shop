@@ -22,7 +22,7 @@ const props = defineProps({
     :class="
       sidebarStore.isOrderOpen
         ? 'translate-y-50 duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-50 text-white'
-        : '-translate-y-[100vh] duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-50 text-white'
+        : '-translate-y-[150vh] duration-700 opacity-100 absolute top-0 left-0 w-full h-full z-50 text-white'
     "
     v-if="items && items?.length > 0"
   >
