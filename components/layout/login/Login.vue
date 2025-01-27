@@ -21,7 +21,7 @@ const { user, isLoading, error, fetchUser } = useAppwriteUser();
     aria-labelledby="profile-title"
     :aria-hidden="!sidebarStore.isLoginOpen"
     :class="[
-      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] bg-black text-white flex flex-col justify-center items-center z-40 py-6',
+      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] md:bg-white bg-black md:text-black text-white flex flex-col justify-center items-center z-40 py-6',
       loginClasses,
     ]"
   >

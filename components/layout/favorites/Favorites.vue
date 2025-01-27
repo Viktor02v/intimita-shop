@@ -24,12 +24,15 @@ const favoritesClasses = computed(() =>
     aria-labelledby="cart-title"
     :aria-hidden="!sidebarStore.isFavoritesOpen"
     :class="[
-      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] bg-black text-white flex flex-col z-40 py-6',
+      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] md:bg-white bg-black text-white flex flex-col z-40 py-6',
       favoritesClasses,
     ]"
   >
     <!-- Header -->
-    <h1 id="cart-title" class="font-light text-center mb-[43px] text-[32px]">
+    <h1
+      id="cart-title"
+      class="font-light text-center mb-[43px] text-[32px] md:text-black text-white"
+    >
       Wishlist
     </h1>
 

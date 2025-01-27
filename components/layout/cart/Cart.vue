@@ -2,6 +2,13 @@
 import { useAppwriteUser } from "@/components/layout/cart/useAppwriteUser";
 import { useGetCartProducts } from "@/composables/useGetCartProducts";
 import { useSidebarStore } from "@/store/sidebar.store";
+import { useScreenSize } from "@/composables/useWindowSize";
+import { useCloseSidebarIfOpen } from "~/composables/useCloseSidebarIfOpen";
+
+const { closeSidebarIfOpen } = useCloseSidebarIfOpen();
+
+const { isDesktop, isTablet, isMobile } = useScreenSize();
+
 import { computed } from "vue";
 
 const sidebarStore = useSidebarStore();
@@ -28,8 +35,8 @@ const goTo = () => {
 
 <template>
   <div>
-    <LayoutOrder :items="cartProducts" />
-    <LayoutOrderComplete />
+    <LayoutOrder :items="cartProducts" v-if="isMobile" />
+    <LayoutOrderComplete v-if="isMobile" />
   </div>
 
   <div
@@ -38,10 +45,12 @@ const goTo = () => {
     aria-labelledby="cart-title"
     :aria-hidden="!sidebarStore.isCartOpen"
     :class="[
-      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] bg-black text-white flex flex-col z-40 py-6',
+      'fixed top-[0vh] md:top-[120px] right-0 md:h-[520px] h-full overflow-hidden w-[100vw] md:w-[34vw] bg-black md:bg-white md:text-black text-white  flex flex-col z-40 py-6',
       cartClasses,
     ]"
   >
+    <LayoutOrder :items="cartProducts" />
+    <LayoutOrderComplete />
     <!-- Header -->
     <h1 id="cart-title" class="font-light text-center mb-[43px] text-[32px]">
       Cart
@@ -86,7 +95,7 @@ const goTo = () => {
       <!-- Empty Cart -->
       <div
         v-else
-        class="uppercase text-center text-base space-x-2 font-light text-black"
+        class="uppercase text-center text-base space-x-2 font-light md:text-black text-white"
       >
         Your cart is empty
       </div>
