@@ -1,58 +1,30 @@
 <script setup lang="ts">
-import { ref, watch, defineEmits, defineProps } from "vue";
+import { ref, onMounted, watchEffect, defineEmits, defineProps } from "vue";
 import { useSidebarFilter } from "~/composables/useSidebarFilter";
-
-const { filterValues } = useSidebarFilter();
+const { sidebarFilter, filterValues } = useSidebarFilter();
 
 const emit = defineEmits(["updateOrders", "setActiveFilter"]);
 
 // Props
 const props = defineProps<{
-  data: any[]; // Ensure data is always an array
+  data: any[];
   filterBy: string;
   filterName: string;
   filterType: string;
   isActive: boolean;
 }>();
 
-// Reactive filtered orders
-const filteredOrders = ref([]); // Initialize as an empty array
-
-// Ensure props.data is valid before filtering
-watch(
-  () => props.data,
-  (newData) => {
-    if (newData && props.filterType && props.filterBy) {
-      filteredOrders.value = newData.filter(
-        (item) => item[props.filterType] === props.filterBy
-      );
-    } else {
-      filteredOrders.value = []; // Fallback to empty array
-    }
-    emit("updateOrders", filteredOrders.value);
-  },
-  { immediate: true } // Run this watch immediately on component mount
-);
-
-// Watch for changes in filterValues and update filteredOrders
-watch(
-  () => filterValues.value,
-  (newFilterValues) => {
-    filteredOrders.value = newFilterValues;
-    emit("updateOrders", filteredOrders.value);
-  }
-);
-
-// Handle filter click
+// Filter functions
 const onFilterClick = () => {
-  if (props.data && props.filterType && props.filterBy) {
-    filteredOrders.value = props.data.filter(
-      (item) => item[props.filterType] === props.filterBy
-    );
-    emit("updateOrders", filteredOrders.value);
-    emit("setActiveFilter", props.filterBy); // Notify parent to set active filter
-  }
+  const filteredOrders = props.data.filter(
+    (item) => item[props.filterType] === props.filterBy
+  );
+  console.log(filterValues.value);
+  emit("updateOrders", filteredOrders);
+  emit("setActiveFilter", props.filterBy); // Notify parent to set active filter
 };
+
+// Check if the orders are received correctly
 </script>
 
 <template>
