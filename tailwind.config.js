@@ -1,5 +1,3 @@
-import animate from "tailwindcss-animate";
-import tailwindScrollbar from "tailwind-scrollbar";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -86,10 +84,5 @@ const config = {
       },
     },
   },
-  plugins: [
-    tailwindScrollbar({ nocompatible: true }),
-    animate,
-  ],
 };
-
 export default config;
