@@ -44,13 +44,12 @@ const handleSubmit = (i: any) => {
         {{ props.title.name }}
       </NuxtLink>
       <div v-for="item in props.items" :key="item.name">
-        <NuxtLink
-          :to="item.url"
+        <div
           @click="handleSubmit((filterValue = item.filterBy))"
           class="text-[12px] 2xl:text-[16px] text-black p-1 hover:text-[#FFD095] hover:translate-x-2 duration-500"
         >
           {{ item.name }}
-        </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
