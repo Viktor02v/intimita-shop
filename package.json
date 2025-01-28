@@ -30,8 +30,6 @@
     "radix-vue": "^1.9.11",
     "shadcn-nuxt": "^0.11.3",
     "tailwind-merge": "^2.6.0",
-    "tailwind-scrollbar": "^4.0.0-beta.0",
-    "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.0.3",
     "vue": "latest",
     "vue-router": "latest"
