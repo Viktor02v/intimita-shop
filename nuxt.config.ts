@@ -2,11 +2,6 @@
 export default defineNuxtConfig({
 compatibilityDate: '2024-11-01',
 devtools: { enabled: true },
-postcss: {
-	plugins: {
-	  "postcss-simple-vars": {},
-	},
- },
 modules: [
   '@nuxtjs/tailwindcss',
   '@nuxt/image',
