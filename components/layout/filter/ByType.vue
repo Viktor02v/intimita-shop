@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, watch, defineEmits, defineProps } from "vue";
 import { useSidebarFilter } from "~/composables/useSidebarFilter";
+import { useSidebarStore } from "~/store/sidebar.store";
+
+const sidebarStore = useSidebarStore();
 
 const { filterValues } = useSidebarFilter();
 
@@ -15,33 +18,28 @@ const props = defineProps<{
   isActive: boolean;
 }>();
 
-// Reactive filtered orders
-const filteredOrders = ref([]); // Initialize as an empty array
+// Reactive filtered data
+const filteredOrders = ref<any[]>([]);
 
-// Ensure props.data is valid before filtering
-watch(
-  () => props.data,
-  (newData) => {
-    if (newData && props.filterType && props.filterBy) {
-      filteredOrders.value = newData.filter(
-        (item) => item[props.filterType] === props.filterBy
-      );
-    } else {
-      filteredOrders.value = []; // Fallback to empty array
-    }
-    emit("updateOrders", filteredOrders.value);
-  },
-  { immediate: true } // Run this watch immediately on component mount
-);
-
-// Watch for changes in filterValues and update filteredOrders
-watch(
-  () => filterValues.value,
-  (newFilterValues) => {
-    filteredOrders.value = newFilterValues;
-    emit("updateOrders", filteredOrders.value);
+// Watch `filterValues` and `props` to update filteredOrders
+watchEffect(() => {
+  if (!props.data || !props.filterType) {
+    filteredOrders.value = [];
+    return;
   }
-);
+
+  // Filter data based on `filterValues` or `props.filterBy`
+  filteredOrders.value = props.data.filter(
+    (item) =>
+      item[props.filterType] === (filterValues.value as string) ||
+      item[props.filterType] === props.filterBy
+  );
+  sidebarStore.isSidebarOpenMore = false;
+  sidebarStore.isSidebarOpenCatalog = false;
+  sidebarStore.isPhoneOpen = false;
+  // Emit the filtered data
+  emit("updateOrders", filteredOrders.value);
+});
 
 // Handle filter click
 const onFilterClick = () => {
