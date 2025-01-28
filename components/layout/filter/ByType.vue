@@ -62,7 +62,7 @@ const onFilterClick = () => {
     >
       <UiButton
         :class="[
-          'w-[35vw] md:w-[150px] text-[13px] font-light cursor-pointer bg-white shadow-lg rounded-3xl border border-gray-500',
+          'w-[35vw] md:w-[150px] text-[12px] font-light cursor-pointer bg-white shadow-lg rounded-3xl border border-gray-500',
           isActive
             ? 'bg-black text-[#FFD095]'
             : 'bg-white text-black hover:bg-black hover:text-[#FFD095]',
