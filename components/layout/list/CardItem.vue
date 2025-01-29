@@ -3,12 +3,15 @@ defineProps({
 	item: Object,
 	required: true,
 });
+const handleImageError = (e) => {
+  e.target.src = '/fallback-image.png';
+}
 </script>
 
 <template>
-	<NuxtLink :to="`/products/${item.$id}`" >
+	<NuxtLink :to="`/products/${item.$id}`">
 		<div class="flex items-center justify-center w-[240px] h-[150px] overflow-hidden">
-			<NuxtImg :src="item.foto_url" class=" max-h-[190%] object-contain" />
+			<NuxtImg :src="item.foto_url" @error="handleImageError" class="max-h-[190%] object-contain" />
 		</div>
 
 		<div class="flex self-start flex-col pl-5 md:pl-0 mt-4 w-full">
@@ -25,6 +28,4 @@ defineProps({
 	</NuxtLink>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
