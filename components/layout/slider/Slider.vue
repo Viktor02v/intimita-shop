@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { SLIDER_DATA } from "@/components/layout/slider/slider.data";
-
+import { useScreenSize } from "@/composables/useWindowSize"
 const isActiveNext = ref(false);
 const isActivePrevious = ref(false);
+
+const { isMobile } = useScreenSize();
 
 const slides = ref(SLIDER_DATA || []);
 </script>
 
 <template>
-	<UiCarousel class="relative w-full overflow-hidden">
+	<UiCarousel :class="[isMobile ? 'z-10' : 'z-50', 'relative  w-full overflow-hidden']">
 		<!-- Carousel Content -->
 		<UiCarouselContent>
 			<UiCarouselItem v-for="(slide, index) in slides" :key="`${slide.title}-${index}`">

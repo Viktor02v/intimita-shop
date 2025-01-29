@@ -39,6 +39,6 @@ const login = async () => {
 
 <style scoped>
 .input {
-  @apply mb-4 placeholder:text-gray-300 placeholder:text-[12px] text-black border-b border-gray-300 focus-visible:ring-0 focus:outline-none;
+  @apply mb-4 placeholder:text-gray-300 placeholder:text-[12px]  text-white md:text-black border-b border-gray-300 focus-visible:ring-0 focus:outline-none;
 }
 </style>
