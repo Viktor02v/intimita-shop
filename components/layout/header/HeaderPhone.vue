@@ -67,8 +67,8 @@ const computedClasses = computed(() => {
 <template>
 	<Icon @click="sidebarStore.togglePhoneOpen(), closeSidebarIfOpen()"
 		:name="sidebarStore.isPhoneOpen ? 'ion:close' : 'ion:menu'" :class="sidebarStore.isPhoneOpen
-				? 'fixed top-6 left-4 rotate-90 duration-700 w-10 h-10 text-white z-50 cursor-pointer '
-				: 'fixed top-6 left-4 rotate-180 duration-700 w-10 h-10 text-white z-50 cursor-pointer'
+			? 'fixed top-6 left-4 rotate-90 duration-700 w-10 h-10 text-white z-50 cursor-pointer '
+			: 'fixed top-6 left-4 rotate-180 duration-700 w-10 h-10 text-white z-50 cursor-pointer'
 			" />
 	<div class="w-full h-[100px] bg-black fixed top-0 left-0 z-40 flex justify-center items-center">
 		<NuxtLink v-if="!sidebarStore.isPhoneOpen" :to="`/`" class="w-full h-full flex items-center justify-center z-40"
@@ -103,16 +103,16 @@ const computedClasses = computed(() => {
 		<!-- Search Button -->
 
 		<!-- User Actions -->
-		<div class="fixed top-[24vh] md:top-[120px] w-full flex flex-col items-center justify-center" @click="handleClick"
+		<div class=" top-[24vh] md:top-[120px] w-full flex flex-col items-center justify-center" @click="handleClick"
 			:class="computedClasses">
 			<div
 				class="flex items-center justify-center gap-[20px] text-[26px] transition-all duration-200 ease-out text-[#989898] pb-6 z-50">
 				<!-- Profile Icon -->
 				<Icon @click="toggleSidebar('Profile')" :name="user ? 'fluent:person-32-light' : 'fluent:person-warning-20-regular'
 					" :class="[
-				sidebarStore.isLoginOpen ? 'text-[#FFD095]' : '',
-				'hover:text-[#FFD095] text-[30px] cursor-pointer ',
-			]" />
+						sidebarStore.isLoginOpen ? 'text-[#FFD095]' : '',
+						'hover:text-[#FFD095] text-[30px] cursor-pointer ',
+					]" />
 
 				<!-- Favorites Icon -->
 				<div class="relative flex items-center">

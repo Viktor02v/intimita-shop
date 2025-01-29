@@ -47,7 +47,7 @@ const favoritesClasses = computed(() =>
 			</div>
 
 			<!-- Empty Wishlist -->
-			<div v-else class="uppercase text-center text-base font-light">
+			<div v-else class="uppercase text-center text-white md:text-black text-base font-light">
 				Your Wishlist is Empty
 			</div>
 		</div>
