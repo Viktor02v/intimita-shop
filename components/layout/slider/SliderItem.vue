@@ -28,8 +28,7 @@ const isHoverText = ref(false);
 		<NuxtImg :src="fotoUrl" class="w-full h-full brightness-50 object-cover" />
 
 		<!-- Overlay Content -->
-
-		<div class="absolute inset-0 flex flex-col items-center pl-9 justify-center text-white">
+		<div class="absolute inset-0 flex flex-col items-center pl-7 justify-center text-white">
 			<h1
 				class="text-[24px] sm:text-[32px] md:text-[40px] font-medium leading-tight hover:scale-110 transition-all duration-500 hover:text-[#ffcf95aa]">
 				{{ title }}
