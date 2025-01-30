@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { defineProps } from "vue"
-import type {Product} from "@/types/product.type"
+import type { Product } from "@/types/product.type"
 
 defineProps<{
-	item:{
-		type:Product,
-		required:true,
+	item: {
+		type: Product,
+		required: true,
 	}
 }>()
 </script>
 
 <template>
-	<div class="w-1/2 flex flex-col gap-10 md:gap-0 md:justify-between min-h-[700px] max-h-[700px] md:pl-[116px] py-[45px]">
+	<div
+		class="w-1/2 flex flex-col gap-10 md:gap-0 md:justify-between min-h-[700px] max-h-[700px] md:pl-[116px] py-[45px]">
 		<div>
 			<div class="w-full mb-[64px]">
 				<h1 class="text-4xl font-light">{{ item.name }}</h1>
@@ -49,7 +50,7 @@ defineProps<{
 
 		<div class="flex items-center justify-between">
 			<div class="flex flex-col mt-2">
-				<p v-if="item.onSale" class="text-xl font-bold line-through text-[#979797]">
+				<p v-if="item.isOnSale" class="text-xl font-bold line-through text-[#979797]">
 					{{ item.onSalePrice }}
 				</p>
 				<p class="text-xl font-bold">{{ item.price }}</p>
@@ -60,6 +61,4 @@ defineProps<{
 	</div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
