@@ -24,7 +24,7 @@ export const FOOTER_TITLES: FooterData[] = [
 export const FOOTER_CATALOG_DATA: FooterData[] = [
   {
     name: "candles",
-    url: "/candels",
+    url: "/candles",
   },
   {
     name: "diffusers",

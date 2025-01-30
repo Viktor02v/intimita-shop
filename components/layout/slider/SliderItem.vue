@@ -2,20 +2,21 @@
 import { ARROW_DATA } from "@/components/layout/arrow/arrow.data";
 import { useCarousel } from "@/components/ui/carousel/useCarousel";
 
-const { carouselApi, currentIndex, startAutoScroll, stopAutoScroll } = useCarousel();
+const { carouselApi, currentIndex, startAutoScroll, stopAutoScroll } =
+  useCarousel();
 
 onMounted(() => {
-	startAutoScroll();
+  startAutoScroll();
 });
 
 onUnmounted(() => {
-	stopAutoScroll();
+  stopAutoScroll();
 });
 
 const props = defineProps({
-	fotoUrl: String,
-	title: String,
-	url: String,
+  fotoUrl: String,
+  title: String,
+  url: String,
 });
 
 const isHoverText = ref(false);
@@ -44,6 +45,6 @@ const isHoverText = ref(false);
 
 <style scoped>
 .backflip {
-	transform: rotateX(180deg) rotateZ(45deg);
+  transform: rotateX(180deg) rotateZ(45deg);
 }
 </style>
