@@ -41,7 +41,7 @@ onUnmounted(() => {
     <div
       v-for="item in SIDEBAR_TITLES"
       :key="item.name"
-      class="fixed top-[24vh] md:top-[120px] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] px-[4vw] py-[4vh] bg-white z-50"
+      class="fixed top-[30vh] md:top-[120px] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] px-[4vw] py-[4vh] bg-white z-50"
       :class="
         sidebarStore.isSidebarOpenCatalog
           ? 'translate-x-0 duration-1000 opacity-100'
@@ -84,7 +84,7 @@ onUnmounted(() => {
     <div
       v-for="item in SIDEBAR_TITLES"
       :key="item.name"
-      class="fixed top-[24vh] md:top-[120px] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] px-[4vw] py-[4vh] bg-white z-50"
+      class="fixed top-[30vh] md:top-[120px] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] px-[4vw] py-[4vh] bg-white z-50"
       :class="
         sidebarStore.isSidebarOpenMore
           ? 'translate-x-0 duration-1000 opacity-100'
