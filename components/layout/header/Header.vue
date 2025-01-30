@@ -16,39 +16,30 @@ const { data: cartProducts = [] } = useGetCartProducts();
 const { data: favoriteProducts = [] } = useGetFavoriteProducts();
 const { user, isLoading, error, fetchUser } = useAppwriteUser();
 const {
-  data: randomList,
-  isPending: isPendingRandom,
-  isError: isErrorRandom,
+	data: randomList,
+	isPending: isPendingRandom,
+	isError: isErrorRandom,
 } = useGetAllProducts();
 </script>
 
 <template>
-  <div
-    class="fixed top-0 left-0 w-full bg-black z-50 min-h-[120px] flex items-center justify-between px-8"
-  >
-    <!-- Search Button -->
-    <div class="relative min-w-[150px] flex items-center justify-center">
-      <!-- Search Icon -->
-      <Icon
-        v-if="!onSearchStore.isSearchOpen"
-        @click="onSearchStore.isSearchOpen = true"
-        name="ion:search"
-        class="text-[26px] text-gray-200 hover:text-[#FFD095] cursor-pointer"
-      />
+	<div class="fixed top-0 left-0 w-full bg-black z-50 min-h-[120px] flex items-center justify-between px-8">
+		<!-- Search Button -->
+		<div class="relative min-w-[150px] flex items-center justify-center">
+			<!-- Search Icon -->
+			<Icon v-if="!onSearchStore.isSearchOpen" @click="onSearchStore.isSearchOpen = true" name="ion:search"
+				class="text-[26px] text-gray-200 hover:text-[#FFD095] cursor-pointer" />
 
-      <!-- Search Input / Results -->
-      <div v-else class="flex items-center text-[#989898]">
-        <LayoutFilterBySearch :data="randomList ?? []" />
-      </div>
-    </div>
+			<!-- Search Input / Results -->
+			<div v-else class="flex items-center text-[#989898]">
+				<LayoutFilterBySearch :data="randomList ?? []" />
+			</div>
+		</div>
 
-    <!-- Header Menu -->
-    <div
-      class="flex items-center text-[26px] hover:text-[#FFD095] text-[#989898]"
-    >
-      <LayoutHeaderMenu />
-    </div>
-
+		<!-- Header Menu -->
+		<div class="flex items-center text-[26px] hover:text-[#FFD095] text-[#989898]">
+			<LayoutHeaderMenu />
+		</div>
     <!-- User Actions -->
     <div
       class="flex items-center justify-center gap-[30px] text-[26px] transition-all duration-200 ease-out text-[#989898]"
@@ -114,11 +105,11 @@ const {
 
 <style scoped>
 .fixed {
-  height: 120px;
+	height: 120px;
 
-  display: flex;
-  justify-content: space-around;
+	display: flex;
+	justify-content: space-around;
 
-  align-items: center;
+	align-items: center;
 }
 </style>

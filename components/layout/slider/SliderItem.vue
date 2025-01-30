@@ -23,37 +23,24 @@ const isHoverText = ref(false);
 </script>
 
 <template>
-  <div
-    @mouseleave="startAutoScroll()"
-    @mouseenter="stopAutoScroll()"
-    class="relative group"
-  >
-    <!-- Image Section -->
-    <NuxtImg
-      :src="fotoUrl"
-      class="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[520px] max-h-[520px] brightness-50 overflow-hidden object-cover"
-    />
+	<div @mouseleave="startAutoScroll()" @mouseenter="stopAutoScroll()"
+		class="relative group h-[300px] sm:h-[400px] md:h-[520px]">
+		<!-- Image Section -->
+		<NuxtImg :src="fotoUrl" class="w-full h-full brightness-50 object-cover" />
 
-    <!-- Overlay Content -->
-    <NuxtLink
-      :to="url"
-      class="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-    >
-      <div class="text-white flex flex-col items-center text-center px-4">
-        <h1
-          class="text-[24px] sm:text-[32px] md:text-[40px] hover:scale-110 transition-all duration-500 hover:text-[#ffcf95aa] font-medium leading-tight md:leading-10"
-        >
-          {{ title }}
-        </h1>
-        <LayoutArrowOnChange
-          :title="ARROW_DATA[1].title"
-          :icon="ARROW_DATA[1].icon"
-          :link="props.url"
-          :size="ARROW_DATA[1].size"
-        />
-      </div>
-    </NuxtLink>
-  </div>
+		<!-- Overlay Content -->
+		<div class="absolute inset-0 flex flex-col items-center pl-7 justify-center text-white">
+			<h1
+				class="text-[24px] sm:text-[32px] md:text-[40px] font-medium leading-tight hover:scale-110 transition-all duration-500 hover:text-[#ffcf95aa]">
+				{{ title }}
+			</h1>
+			<NuxtLink :to="url" class="">
+				<LayoutArrowOnChange :title="ARROW_DATA[1].title" :icon="ARROW_DATA[1].icon" :link="props.url"
+					:size="ARROW_DATA[1].size" />
+			</NuxtLink>
+		</div>
+
+	</div>
 </template>
 
 <style scoped>

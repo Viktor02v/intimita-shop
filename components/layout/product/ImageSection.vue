@@ -9,12 +9,18 @@ defineProps({
 </script>
 
 <template>
-	<div
-		class="w-1/2 flex shadow-[0_4px_15px_rgba(0,0,0,0.1)] items-center border rounded justify-center min-h-[400px] md:min-h-[700px] max-h-[700px]">
-		<div class=" flex  items-center justify-center w-[600px] h-[600px]">
-			<NuxtImg :src="img" class="w-[80%] md:w-full h-full object-contain" alt="Product Image" />
+	<div class="w-1/2 shadow-[0_4px_15px_rgba(0,0,0,0.1)] border rounded min-h-[400px] md:min-h-[700px] max-h-[700px] relative">
+		<div class="absolute inset-0 flex items-center justify-center p-4">
+			<NuxtImg 
+				:src="img" 
+				class="w-1/2 h-1/2 object-contain"
+				style="transform: translateZ(0)" 
+				alt="Product Image"
+			/>
 		</div>
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
