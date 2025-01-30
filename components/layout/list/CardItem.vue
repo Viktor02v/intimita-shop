@@ -4,7 +4,7 @@ defineProps({
 	required: true,
 });
 const handleImageError = (e) => {
-  e.target.src = '/fallback-image.png';
+	e.target.src = '/fallback-image.png';
 }
 </script>
 
