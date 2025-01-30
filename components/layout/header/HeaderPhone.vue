@@ -190,6 +190,7 @@ const computedClasses = computed(() => {
     <!-- Search Button -->
 
     <!-- User Actions -->
+
     <div
       class="top-[24vh] md:top-[120px] w-full flex flex-col items-center justify-center"
       @click="handleClick"
