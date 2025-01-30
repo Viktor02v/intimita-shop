@@ -40,7 +40,7 @@ onUnmounted(() => {
 
 	<div>
 		<div v-for="item in SIDEBAR_TITLES" :key="item.name"
-			class="fixed top-[24vh] md:top-[120px] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] px-[4vw] py-[4vh] bg-white z-50 md:z-30"
+			class="fixed top-[30vh] md:top-[120px] left-0 md:h-[519.5px] h-full w-[60vw] md:w-[34vw] px-[4vw] py-[4vh] bg-white z-50 md:z-30"
 			:class="sidebarStore.isSidebarOpenCatalog
 					? 'translate-x-0 duration-1000 opacity-100'
 					: '-translate-x-full duration-1000 opacity-100'
