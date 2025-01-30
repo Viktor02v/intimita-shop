@@ -10,7 +10,7 @@ const slides = ref(SLIDER_DATA || []);
 </script>
 
 <template>
-	<UiCarousel :class="[isMobile ? 'z-10' : 'z-50', 'relative  w-full overflow-hidden']">
+	<UiCarousel :class="[isMobile ? 'z-10' : 'z-40', 'relative  w-full overflow-hidden']">
 		<!-- Carousel Content -->
 		<UiCarouselContent>
 			<UiCarouselItem v-for="(slide, index) in slides" :key="`${slide.title}-${index}`">
