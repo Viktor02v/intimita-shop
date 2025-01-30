@@ -9,7 +9,7 @@ const handleImageError = (e) => {
 </script>
 
 <template>
-	<NuxtLink :to="`/products/${item.$id}`">
+	<NuxtLink :to="`/products/${item.$id}`" >
 		<div class="flex items-center justify-center w-[240px] h-[150px] overflow-hidden">
 			<NuxtImg :src="item.foto_url" @error="handleImageError" class="max-h-[190%] object-contain" />
 		</div>

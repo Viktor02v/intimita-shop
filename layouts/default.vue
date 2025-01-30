@@ -40,6 +40,23 @@ const calculateOpacity = computed(() => {
 		? "opacity-50  transition-all duration-500 easy-in-out "
 		: "opacity-100";
 });
+
+const shadowStyle = ref({
+	left: '0px',
+	top: '0px',
+});
+
+const handleMouseMove = (e: MouseEvent) => {
+	const target = e.currentTarget as HTMLElement;
+	const rect = target.getBoundingClientRect();
+	const x = e.clientX - rect.left;
+	const y = e.clientY - rect.top;
+
+	shadowStyle.value = {
+		left: `${x}px`,
+		top: `${y}px`,
+	};
+};
 </script>
 
 <template>
@@ -47,8 +64,8 @@ const calculateOpacity = computed(() => {
 		<LayoutLoader v-if="isLoadingStore.isLoading" />
 		<section v-else class="relative w-full h-[100vh]">
 			<LayoutHeaderPhone v-if="isMobile" :class="sidebarStore.isPhoneOpen
-					? 'scrollbar-none overflow-y-auto'
-					: 'scrollbar-none overflow-y-hidden'
+				? 'scrollbar-none overflow-y-auto'
+				: 'scrollbar-none overflow-y-hidden'
 				" />
 			<LayoutHeader v-else />
 
@@ -60,7 +77,12 @@ const calculateOpacity = computed(() => {
 					: 'scrollbar-none overflow-y-hidden',
 				calculateOpacity,
 			]" @click="closeSidebarIfOpen">
-				<slot />
+				<div class="content-container relative" @mousemove="handleMouseMove">
+					<div class="mouse-shadow pointer-events-none absolute w-[250px] h-[250px] 
+bg-[radial-gradient(circle,rgba(255,188,105,0.2)_20%,transparent_70%)] 
+rounded-full transform -translate-x-1/2 -translate-y-1/2 z-1" :style="shadowStyle" />
+					<slot />
+				</div>
 				<LayoutFooter />
 			</div>
 		</section>
